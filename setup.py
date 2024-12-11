@@ -1,42 +1,47 @@
-import shutil
-from pathlib import Path
+import argparse
 
-config_path = Path.home() / ".config"
-dotfiles_repo_path = Path.home() / "dotfiles" / "config"
-
-files_to_copy = [
-    ".zshrc",
-    "dunst",
-    "fastfetch",
-    "fish",
-    "htop",
-    "hypr",
-    "kitty",
-    "ml4w",
-    "nvim",
-    "rofi",
-    "starship",
-    "tmux",
-    "waybar",
-    "zsh",
-]
-
-
-def update_dotfiles():
-    for file_name in files_to_copy:
-        src = config_path / file_name
-        dest = dotfiles_repo_path / file_name
-
-        if src.exists():
-            if src.is_dir():
-                shutil.copytree(src, dest, dirs_exist_ok=True)
-                print(f"Copied directory: {src} -> {dest}")
-            else:
-                shutil.copy2(src, dest)
-                print(f"Copied file: {src} -> {dest}")
-        else:
-            print(f"Source does not exist: {src}")
-
+from dotfile_utils import backup, copy, push, sync, update
 
 if __name__ == "__main__":
-    update_dotfiles()
+    parser = argparse.ArgumentParser(description="Manage your dotfiles.")
+    parser.add_argument(
+        "--backup",
+        action="store_true",
+        help="Backup existing files/directories to ~/backup/config.",
+    )
+    parser.add_argument(
+        "--update",
+        action="store_true",
+        help="Update dotfiles repository with local config files.",
+    )
+    parser.add_argument(
+        "--copy",
+        action="store_true",
+        help="Copy dotfiles from repository to ~/.config/",
+    )
+    parser.add_argument(
+        "--push",
+        metavar="MESSAGE",
+        type=str,
+        nargs="?",
+        const="Update dotfiles",
+        help='Push dotfiles to GitHub repository with an optional commit message. Defaults to "Update dotfiles".',
+    )
+    parser.add_argument(
+        "--sync",
+        action="store_true",
+        help="Sync dotfiles with GitHub repository",
+    )
+
+    args = parser.parse_args()
+
+    if args.backup:
+        backup()
+    if args.update:
+        update()
+    if args.copy:
+        copy()
+    if args.push is not None:
+        push(args.push)
+    if args.sync:
+        sync()
