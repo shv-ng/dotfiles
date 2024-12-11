@@ -113,30 +113,32 @@ def sync():
 def push(message):
     """Push dotfiles to GitHub repository."""
     try:
+        # Remove __pycache__ from the index first
         subprocess.run(
-            [
-                "git",
-                "add",
-                ".",
-            ],
+            ["git", "rm", "-r", "--cached", "__pycache__/"],
             check=True,
         )
+    except subprocess.CalledProcessError:
+        print("__pycache__ was not being tracked or already removed.")
+
+    try:
+        # Stage all changes
         subprocess.run(
-            [
-                "git",
-                "commit",
-                "-m",
-                message,
-            ],
-            check=True,
-        )
-        # git rm -r --cached __pycache__/
-        subprocess.run(
-            ["git", "rm", "-r", "--cache", "__pycache__/"],
+            ["git", "add", "."],
             check=True,
         )
 
-        subprocess.run(["git", "push"], check=True)
+        # Commit with the provided message
+        subprocess.run(
+            ["git", "commit", "-m", message],
+            check=True,
+        )
+
+        # Push changes
+        subprocess.run(
+            ["git", "push"],
+            check=True,
+        )
         print("Dotfiles synced with GitHub successfully.")
     except subprocess.CalledProcessError as e:
         print(f"Git operation failed: {e}")
