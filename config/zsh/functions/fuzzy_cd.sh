@@ -3,10 +3,10 @@ fcda(){
 }
 
 fcd() {
-    cd "$(find . -type d \
-        -not -path '*/.*' \
-        -not -path '*/target*' \
-        -not -path '*/build*' \
-        -not -path '*/node_modules*' \
+    cd "$(fd --type d \
+        --exclude .git \
+        --exclude target \
+        --exclude build \
+        --exclude node_modules \
         | fzf)"
 }
