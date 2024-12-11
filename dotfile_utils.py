@@ -79,32 +79,6 @@ def copy():
             print(f"Source does not exist in repo: {src}")
 
 
-def push(message):
-    """Push dotfiles to GitHub repository."""
-    try:
-        subprocess.run(
-            [
-                "git",
-                "add",
-                ".",
-            ],
-            check=True,
-        )
-        subprocess.run(
-            [
-                "git",
-                "commit",
-                "-m",
-                message,
-            ],
-            check=True,
-        )
-        subprocess.run(["git", "push"], check=True)
-        print("Dotfiles synced with GitHub successfully.")
-    except subprocess.CalledProcessError as e:
-        print(f"Git operation failed: {e}")
-
-
 def sync():
     """Sync dotfiles with GitHub repository."""
     REPO_URL = "https://github.com/ShivangSrivastava/dotfiles"
@@ -132,5 +106,37 @@ def sync():
         )
         print("Repository cloned and current directory replaced successfully.")
 
+    except subprocess.CalledProcessError as e:
+        print(f"Git operation failed: {e}")
+
+
+def push(message):
+    """Push dotfiles to GitHub repository."""
+    try:
+        subprocess.run(
+            [
+                "git",
+                "add",
+                ".",
+            ],
+            check=True,
+        )
+        subprocess.run(
+            [
+                "git",
+                "commit",
+                "-m",
+                message,
+            ],
+            check=True,
+        )
+        # git rm -r --cached __pycache__/
+        subprocess.run(
+            ["git", "rm", "-r", "--cache", "__pycache__/"],
+            check=True,
+        )
+
+        subprocess.run(["git", "push"], check=True)
+        print("Dotfiles synced with GitHub successfully.")
     except subprocess.CalledProcessError as e:
         print(f"Git operation failed: {e}")

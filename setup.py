@@ -1,6 +1,6 @@
 import argparse
 
-from dotfile_utils import backup, copy, push, sync, update
+from dotfile_utils import backup, copy, sync, update, push
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Manage your dotfiles.")
@@ -20,19 +20,19 @@ if __name__ == "__main__":
         help="Copy dotfiles from repository to ~/.config/",
     )
     parser.add_argument(
+        "--sync",
+        action="store_true",
+        help="Sync dotfiles with GitHub repository",
+    )
+    parser.add_argument(
         "--push",
         metavar="MESSAGE",
         type=str,
         nargs="?",
         const="Update dotfiles",
-        help='Push dotfiles to GitHub repository with an optional commit message. Defaults to "Update dotfiles".',
+        help="Push dotfiles to GitHub repository with an optional commit"
+        ' message. Defaults to "Update dotfiles".',
     )
-    parser.add_argument(
-        "--sync",
-        action="store_true",
-        help="Sync dotfiles with GitHub repository",
-    )
-
     args = parser.parse_args()
 
     if args.backup:
@@ -41,7 +41,7 @@ if __name__ == "__main__":
         update()
     if args.copy:
         copy()
-    if args.push is not None:
-        push(args.push)
     if args.sync:
         sync()
+    if args.push is not None:
+        push(args.push)
