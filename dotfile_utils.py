@@ -5,6 +5,7 @@ import subprocess
 CONFIG_PATH = Path.home() / ".config"
 DOTFILES_REPO_PATH = Path.home() / "dotfiles" / "config"
 BACKUP_PATH = Path.home() / "backup" / "config"
+REPO_URL = "https://github.com/ShivangSrivastava/dotfiles"
 
 FILES_TO_COPY = [
     ".zshrc",
@@ -81,7 +82,6 @@ def copy():
 
 def sync():
     """Sync dotfiles with GitHub repository."""
-    REPO_URL = "https://github.com/ShivangSrivastava/dotfiles"
     try:
         subprocess.run(
             [
