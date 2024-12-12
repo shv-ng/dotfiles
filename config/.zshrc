@@ -1,3 +1,4 @@
+
 # Source all function scripts
 for script in ~/.config/zsh/functions/*.sh; do
   [[ -f $script ]] && source "$script"
