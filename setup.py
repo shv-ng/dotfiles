@@ -1,4 +1,5 @@
 import argparse
+import sys
 
 from dotfile_utils import backup, copy, sync, update, push
 
@@ -34,7 +35,9 @@ if __name__ == "__main__":
         ' message. Defaults to "Update dotfiles".',
     )
     args = parser.parse_args()
-
+    if len(sys.argv) == 1:
+        parser.print_help()
+        sys.exit()
     if args.backup:
         backup()
     if args.update:

@@ -13,6 +13,9 @@ return {
       vim.keymap.set("n", "<leader>fg", builtin.live_grep, {})
       vim.keymap.set("n", "<leader><leader>", builtin.buffers, {})
 
+      vim.keymap.set("n", "<leader>ca", function()
+        require("telescope.builtin").lsp_code_actions()
+      end, { noremap = true, silent = true })
       require("telescope").load_extension("ui-select")
     end,
   },

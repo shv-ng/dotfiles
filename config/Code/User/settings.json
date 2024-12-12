@@ -170,8 +170,7 @@
   "python.analysis.inlayHints.functionReturnTypes": true,
   "python.analysis.inlayHints.pytestParameters": true,
   "python.analysis.inlayHints.variableTypes": true,
-  "python.linting.flake8Enabled": true,
-  "python.formatting.provider": "yapf",
-  "python.linting.flake8Args": ["--max-line-length=120"],
-  "python.linting.pylintEnabled": false
+  "pylint.path": [
+    "/home/shivang/code/python/.venv/bin/pylint"
+  ]
 }
