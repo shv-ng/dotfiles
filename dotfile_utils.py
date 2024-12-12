@@ -19,7 +19,7 @@ FILES_TO_COPY = [
     "nvim",
     "rofi",
     "starship",
-    "tmux",
+    "tmux/tmux.conf",
     "waybar",
     "zsh",
     "Code/User/snippets",
