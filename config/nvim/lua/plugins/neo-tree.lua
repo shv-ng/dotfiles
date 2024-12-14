@@ -11,12 +11,12 @@ return {
 			filesystem = {
 				filtered_items = {
 					visible = true, -- This is what you want: If you set this to `true`, all "hide" just mean "dimmed out"
-					hide_dotfiles = false,
+					hide_dotfiles = true,
 					hide_gitignored = true,
 				},
 			},
 		})
-		vim.keymap.set("n", "<C-n>", ":Neotree filesystem reveal toggle left<CR>", {})
+		vim.keymap.set("n", "<C-n>", ":Neotree filesystem reveal toggle right<CR>", {})
 		vim.keymap.set("n", "<leader>bf", ":Neotree buffers reveal toggle float<CR>", {})
 	end,
 }

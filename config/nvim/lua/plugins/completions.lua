@@ -1,12 +1,12 @@
 return {
   {
-    "hrsh7th/cmp-nvim-lsp"
+    "hrsh7th/cmp-nvim-lsp", -- LSP source for nvim-cmp
   },
   {
     "L3MON4D3/LuaSnip",
     dependencies = {
-      "saadparwaiz1/cmp_luasnip",
-      "rafamadriz/friendly-snippets",
+      "saadparwaiz1/cmp_luasnip",  -- Snippet completions
+      "rafamadriz/friendly-snippets", -- Predefined snippets
     },
   },
   {
@@ -33,10 +33,20 @@ return {
           ["<CR>"] = cmp.mapping.confirm({ select = true }),
         }),
         sources = cmp.config.sources({
-          { name = "nvim_lsp" },
-          { name = "luasnip" }, -- For luasnip users.
+          { name = "nvim_lsp" }, -- LSP completions
+          { name = "luasnip" }, -- Snippet completions
+          { name = "path" }, -- File path completions
+          { name = "buffer" }, -- Buffer content completions
+        }),
+      })
+
+      -- Enable Python-specific snippet handling
+      cmp.setup.filetype("python", {
+        sources = cmp.config.sources({
+          { name = "nvim_lsp" }, -- Python LSP completions
+          { name = "luasnip" }, -- Python snippets
         }, {
-          { name = "buffer" },
+          { name = "buffer" }, -- Buffer completions
         }),
       })
     end,

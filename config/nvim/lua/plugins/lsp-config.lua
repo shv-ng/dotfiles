@@ -1,19 +1,5 @@
 return {
   {
-    "williamboman/mason.nvim",
-    lazy = false,
-    config = function()
-      require("mason").setup()
-    end,
-  },
-  {
-    "williamboman/mason-lspconfig.nvim",
-    lazy = false,
-    opts = {
-      auto_install = true,
-    },
-  },
-  {
     "neovim/nvim-lspconfig",
     lazy = false,
     opts = {
@@ -23,32 +9,17 @@ return {
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
       local lspconfig = require("lspconfig")
+      -- HTML LSP setup
       lspconfig.html.setup({
         capabilities = capabilities,
       })
+
+      -- Lua LSP setup
       lspconfig.lua_ls.setup({
         capabilities = capabilities,
       })
-      lspconfig.pyright.setup({
-        cmd = { "pyright-langserver", "--stdio" },
-        capabilities = capabilities,
-        on_attach = function(client, bufnr)
-          local bufopts = { noremap = true, silent = true, buffer = bufnr }
-          vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, bufopts)
-        end,
-      })
-      lspconfig.pylsp.setup({
-        settings = {
-          pylsp = {
-            plugins = {
-              flake8 = {
-                enabled = true,
-                maxLineLength = 79,
-              },
-            },
-          },
-        },
-      })
+
+      -- Rust LSP setup
       lspconfig.rust_analyzer.setup({
         capabilities = capabilities,
         settings = {
@@ -94,6 +65,23 @@ return {
           },
         },
       })
+
+      -- Python LSP (pylsp) setup
+      lspconfig.pylsp.setup({
+        capabilities = capabilities,
+        settings = {
+          pylsp = {
+            plugins = {
+              pyflakes = { enabled = true }, -- Linting
+              yapf = { enabled = true }, -- Formatting
+              pylsp_mypy = { enabled = true }, -- Type checking
+              pylsp_rope = { enabled = true }, -- Refactoring
+            },
+          },
+        },
+      })
+
+      -- Keybindings
       vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
       vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, {})
       vim.keymap.set("n", "<leader>gr", vim.lsp.buf.references, {})

@@ -1,5 +1,5 @@
 fcda(){
-    cd "$(find -type d | fzf)"
+    cd "$(fd -type d | fzf)"
 }
 
 fcd() {
