@@ -5,7 +5,7 @@ return {
   {
     "L3MON4D3/LuaSnip",
     dependencies = {
-      "saadparwaiz1/cmp_luasnip",  -- Snippet completions
+      "saadparwaiz1/cmp_luasnip",     -- Snippet completions
       "rafamadriz/friendly-snippets", -- Predefined snippets
     },
   },
@@ -34,9 +34,9 @@ return {
         }),
         sources = cmp.config.sources({
           { name = "nvim_lsp" }, -- LSP completions
-          { name = "luasnip" }, -- Snippet completions
-          { name = "path" }, -- File path completions
-          { name = "buffer" }, -- Buffer content completions
+          { name = "luasnip" },  -- Snippet completions
+          { name = "path" },     -- File path completions
+          { name = "buffer" },   -- Buffer content completions
         }),
       })
 
@@ -44,10 +44,16 @@ return {
       cmp.setup.filetype("python", {
         sources = cmp.config.sources({
           { name = "nvim_lsp" }, -- Python LSP completions
-          { name = "luasnip" }, -- Python snippets
+          { name = "luasnip" },  -- Python snippets
         }, {
-          { name = "buffer" }, -- Buffer completions
+          { name = "buffer" },   -- Buffer completions
         }),
+      })
+      cmp.setup.filetype('htmljinja', {
+        sources = {
+          { name = 'buffer' },
+          { name = 'path' },
+        },
       })
     end,
   },
