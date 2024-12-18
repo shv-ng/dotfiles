@@ -29,3 +29,6 @@ vim.cmd([[
 if vim.fn.filereadable("./.nvimrc") == 1 then
   vim.cmd("source ./.nvimrc")
 end
+if vim.lsp.inlay_hint then
+  vim.lsp.inlay_hint.enable(true, { 0 })
+end

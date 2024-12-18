@@ -30,9 +30,12 @@ return {
             checkOnSave = {
               command = "clippy",
             },
+            completion = {
+              enable = true,
+            },
             inlayHints = {
               bindingModeHints = {
-                enable = false,
+                enable = true,
               },
               chainingHints = {
                 enable = true,
@@ -72,8 +75,8 @@ return {
         settings = {
           pylsp = {
             plugins = {
-              pyflakes = { enabled = true }, -- Linting
-              yapf = { enabled = true }, -- Formatting
+              pyflakes = { enabled = true },   -- Linting
+              yapf = { enabled = true },       -- Formatting
               pylsp_mypy = { enabled = true }, -- Type checking
               pylsp_rope = { enabled = true }, -- Refactoring
             },
