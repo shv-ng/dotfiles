@@ -170,7 +170,6 @@
   "python.analysis.inlayHints.functionReturnTypes": true,
   "python.analysis.inlayHints.pytestParameters": true,
   "python.analysis.inlayHints.variableTypes": true,
-  "pylint.path": [
-    "/home/shivang/code/python/.venv/bin/pylint"
-  ]
+  "pylint.path": ["/home/shivang/code/python/.venv/bin/pylint"],
+  "database-client.autoSync": true
 }
