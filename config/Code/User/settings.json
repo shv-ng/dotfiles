@@ -63,7 +63,6 @@
   "[html]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-
   "dart.enableCompletionCommitCharacters": true,
   "dart.previewCommitCharacters": true,
   "[jsonc]": {
@@ -72,7 +71,6 @@
   "workbench.sideBar.location": "right",
   "dart.debugExternalPackageLibraries": true,
   "dart.debugSdkLibraries": false,
-
   // vsc custom css
   "vscode_custom_css.imports": [
     "file:///home/shivang/vsc_custom/vscode-custom-css.css",
