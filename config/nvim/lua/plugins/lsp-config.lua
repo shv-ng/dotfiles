@@ -1,97 +1,53 @@
 return {
-	{
-		"neovim/nvim-lspconfig",
-		lazy = false,
-		opts = {
-			inlay_hints = { enabled = true },
-		},
-		config = function()
-			local capabilities = require("cmp_nvim_lsp").default_capabilities()
+  "neovim/nvim-lspconfig",
+  cmd = { "LspInfo", "LspInstall", "LspStart" },
+  event = { "BufReadPre", "BufNewFile" },
+  dependencies = {
+    { "hrsh7th/cmp-nvim-lsp" },
+    { "williamboman/mason.nvim" },
+    { "williamboman/mason-lspconfig.nvim" },
+  },
+  init = function()
+    -- Reserve a space in the gutter
+    -- This will avoid an annoying layout shift in the screen
+    vim.opt.signcolumn = "yes"
+  end,
+  config = function()
+    local lsp_defaults = require("lspconfig").util.default_config
 
-			local lspconfig = require("lspconfig")
-			-- HTML LSP setup
-			lspconfig.html.setup({
-				capabilities = capabilities,
-			})
+    -- Add cmp_nvim_lsp capabilities settings to lspconfig
+    -- This should be executed before you configure any language server
+    lsp_defaults.capabilities =
+        vim.tbl_deep_extend("force", lsp_defaults.capabilities, require("cmp_nvim_lsp").default_capabilities())
 
-			-- Lua LSP setup
-			lspconfig.lua_ls.setup({
-				capabilities = capabilities,
-			})
+    -- LspAttach is where you enable features that only work
+    -- if there is a language server active in the file
+    vim.api.nvim_create_autocmd("LspAttach", {
+      desc = "LSP actions",
+      callback = function(event)
+        local opts = { buffer = event.buf }
+        vim.keymap.set('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>', opts)
+        vim.keymap.set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>', opts)
+        vim.keymap.set('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>', opts)
+        vim.keymap.set('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<cr>', opts)
+        vim.keymap.set('n', 'go', '<cmd>lua vim.lsp.buf.type_definition()<cr>', opts)
+        vim.keymap.set('n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>', opts)
+        vim.keymap.set('n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<cr>', opts)
+        vim.keymap.set('n', '<F2>', '<cmd>lua vim.lsp.buf.rename()<cr>', opts)
+        vim.keymap.set({ 'n', 'x' }, '<F3>', '<cmd>lua vim.lsp.buf.format({async = true})<cr>', opts)
+        vim.keymap.set('n', '<F4>', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
+      end,
+    })
 
-			-- Rust LSP setup
-			lspconfig.rust_analyzer.setup({
-				capabilities = capabilities,
-				settings = {
-					["rust-analyzer"] = {
-						cargo = {
-							allFeatures = true,
-						},
-						checkOnSave = {
-							command = "clippy",
-						},
-						completion = {
-							enable = true,
-						},
-						inlayHints = {
-							bindingModeHints = {
-								enable = true,
-							},
-							chainingHints = {
-								enable = true,
-							},
-							closingBraceHints = {
-								enable = true,
-								minLines = 25,
-							},
-							closureReturnTypeHints = {
-								enable = "never",
-							},
-							lifetimeElisionHints = {
-								enable = "never",
-								useParameterNames = false,
-							},
-							maxLength = 25,
-							parameterHints = {
-								enable = true,
-							},
-							reborrowHints = {
-								enable = "never",
-							},
-							renderColons = true,
-							typeHints = {
-								enable = true,
-								hideClosureInitialization = false,
-								hideNamedConstructor = false,
-							},
-						},
-					},
-				},
-			})
-
-			-- Python LSP (pylsp) setup
-			lspconfig.pylsp.setup({
-				capabilities = capabilities,
-				settings = {
-					pylsp = {
-						plugins = {
-							pyflakes = { enabled = true }, -- Linting
-							yapf = { enabled = true }, -- Formatting
-							pylsp_mypy = { enabled = true }, -- Type checking
-							pylsp_rope = { enabled = true }, -- Refactoring
-							flake8 = { enabled = true, max_line_length = 79 },
-						},
-					},
-				},
-			})
-
-			-- Keybindings
-			vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
-			vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, {})
-			vim.keymap.set("n", "<leader>gr", vim.lsp.buf.references, {})
-			vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {})
-			vim.keymap.set("n", "<leader>gf", vim.lsp.buf.format, {})
-			vim.keymap.set("n", "<space>rn", vim.lsp.buf.rename, {})
-		end,
-	},
+    require("mason-lspconfig").setup({
+      ensure_installed = {},
+      handlers = {
+        -- this first function is the "default handler"
+        -- it applies to every language server without a "custom handler"
+        function(server_name)
+          require("lspconfig")[server_name].setup({})
+        end,
+      },
+    })
+  end,
 }
