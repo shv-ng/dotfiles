@@ -1,0 +1,54 @@
+*,
+*::before,
+*::after {
+  font-family: 'JetBrainsMono Nerd Font', 'JetBrains Mono', monospace !important;
+}
+
+
+body {
+  font-size: 14px;
+  line-height: 1;
+  letter-spacing: 0.069em;
+  font-weight: 500;
+  font-style: normal;
+}
+
+#urlbar-background,
+#searchbar {
+  border-radius: 20px !important;
+}
+
+.tab-background {
+  border-radius: var(--border-radius-circle) !important;
+}
+
+.titlebar-buttonbox-container {
+  display: none !important;
+}
+
+#TabsToolbar {
+  display: none !important;
+}
+
+#nav-bar {
+  margin-top: 15px;
+  margin-bottom: 10px;
+}
+
+.tab-close-button,
+#alltabs-button,
+#tabbrowser-arrowscrollbox-periphery,
+hbox.titlebar-spacer:nth-child(3),
+#tracking-protection-icon-container,
+#identity-icon-box,
+.tab-icon-image {
+  display: none;
+}
+
+.tabbrowser-tab {
+  max-width: 150px !important;
+}
+
+#urlbar-input {
+  padding-left: 10px !important;
+}
