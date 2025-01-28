@@ -2,7 +2,7 @@
 # Fuzzy cd
 zle -N fcd
 # ctrl+f
-bindkey "^f" fcd
+bindkey "^f" fcd 
 
 
 
