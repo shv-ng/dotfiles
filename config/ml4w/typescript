@@ -1,37 +1,0 @@
-Script started on 2024-12-22 01:41:58+05:30 [TERM="xterm-kitty" TTY="/dev/pts/0" COLUMNS="165" LINES="38"]
-[1m[7m%[27m[1m[0m                                                                                                                                                                     ]2;shivang@archlinux:~/.config/ml4w]1;~/.config/ml4w]7;file://archlinux/home/shivang/.config/ml4w\[0m[27m[24m[J
-[1;36m~/.config/ml4w[0m 
-[1;32m➜[0m [K[?1h[?2004hscript[32ms[32mc[32mr[32mi[32mp[32mt[39m[32mt[32m [39m[32mt[39m[39m [90mapps/[39m[39m [39m [39m [39m [39m [32mt[32ms[39m[4m[32ms[4m[32mc[4m[32mr[4m[32mi[4m[32mp[4m[32mt[4m[32ms[24m[39m[?1l[?2004l
-]2;scripts]1;scripts[1m[7m%[27m[1m[0m                                                                                                                                                                     ]2;shivang@archlinux:~/.config/ml4w/scripts]1;../ml4w/scripts]7;file://archlinux/home/shivang/.config/ml4w/scripts\[0m[27m[24m[J
-[1;36m.config/ml4w/scripts[0m 
-[1;32m➜[0m [K[?1h[?2004hl[32ml[39m[32ml[39m[90ms[39m[32ml[32ms[39m[?1l[?2004l
-]2;ls --color=tty]1;ls[0m[01;32mkeybindings.sh[0m  [01;32mreload-hyprpaper.sh[0m  [01;32mreload-waybar.sh[0m
-[1m[7m%[27m[1m[0m                                                                                                                                                                     ]2;shivang@archlinux:~/.config/ml4w/scripts]1;../ml4w/scripts]7;file://archlinux/home/shivang/.config/ml4w/scripts\[0m[27m[24m[J
-[1;36m.config/ml4w/scripts[0m 
-[1;32m➜[0m [K[?1h[?2004hr[32mr[39m[32mr[39m[90mm K\ I\ S\ S\(1\).png[39m[21D[32mr[32me[39m[39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [20D[39m[4mr[39m[4me[24m[90mboot[39m[4mr[4me[39m[4ml[24m[39m [39m [39m [4ml[4mo[24m[24m[32m_[24m[32mo[24m[32mm[24m[32mz[32m::reload[39m[1m [0m[90m-1[39m[0m [39m [39m [32ma[39m[39m [11D[1m[31m_[1m[31mo[1m[31mm[1m[31mz[1m[31m:[1m[31m:[1m[31mr[1m[31me[1m[31ml[1m[31mo[1m[31ma[0m[39m[1m[31mo[0m[39m[0m[39m [90mad[39m[1m[31ml[0m[39m[0m[39m [39m [39m [90moad[39m[1m[31me[0m[39m[0m[39m [39m [39m [39m [90mload[39m[1m[31mr[0m[39m[0m[39m [39m [39m [39m [39m [90m:[39m[1m[31m:[0m[39m[0m[39m [39m [90ma[39m[1m[31m:[0m[39m[0m[39m [39m [90ma[39m[1m[31mz[0m[39m[0m[39m [39m [0m[32m_[0m[32mo[0m[32mm[0m[32mz[39m[32mm[39m[39m [1m[31m_[1m[31mo[1m[31mm[0m[39m[90mz[39m[1m[31m_[1m[31mo[0m[39m[0m[39m [39m [90mbjdump[39m[1m[31m_[0m[39m[0m[39m [39m [39m [39m [39m [39m [39m [0m[32m_[39m[39m .[32m.[39m[32m.[39m[90mconfig/[39m[32m.[32m/[39m[39m [39m [39m [39m [39m [39m [4m[32m.[4m[32m/[24m[39m[90mzen[39m[4m[32m.[4m[32m/[4m[32mr[24m[39m[39m [39m [39m[4m.[39m[4m/[39m[4mr[24m[90mustlings init[39m[13D[4mr[39m[4me[24m[39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [12D[90mload-hyprpaper.sh[39m[17D[4me[39m[4ml[24m[39mo[39ma[39md[39m-[39mh[39my[39mp[39mr[39mp[39ma[39mp[39me[39mr[39m.[39ms[39mh[21D[24m[32m.[24m[32m/[24m[32mr[24m[32me[24m[32ml[32mo[32ma[32md[32m-[32mh[32my[32mp[32mr[32mp[32ma[32mp[32me[32mr[32m.[32ms[32mh[39m[?1l[?2004l
-]2;./reload-hyprpaper.sh]1;./reload-hyprpaper.sh[1m[7m%[27m[1m[0m                                                                                                                                                                     ]2;shivang@archlinux:~/.config/ml4w/scripts]1;../ml4w/scripts]7;file://archlinux/home/shivang/.config/ml4w/scripts\[LOG] Welcome to hyprpaper!
-built from commit  ()
-[LOG] Cleaned old hyprpaper preloads (1), removing 4.2MB
-[0m[27m[24m[J
-[1;36m.config/ml4w/scripts[0m 
-[1;32m➜[0m [K[?1h[?2004h[LOG] Preloaded target /home/shivang/Downloads/config_the_future.png in 39.51ms -> Pixel size: [1920, 1080]
-[LOG] Buffer created for target /home/shivang/Downloads/config_the_future.png, Shared Memory usage: 4.2MB
-[LOG] Total SM usage for all buffers: 4.2MB
-[LOG] hyprpaper socket started at /run/user/1000/hypr/12f9a0d0b93f691d4d9923716557154d74777b0a_1734811534_738700489/.hyprpaper.sock (fd: 5)
-[LOG] configure for eDP-1
-[LOG] handlePreferredScale: 1.00 for 563781130a10
-[LOG] configure for eDP-1
-[LOG] Image data for eDP-1: /home/shivang/Downloads/config_the_future.png at [0.00, -0.26], scale: 0.71 (original image size: [1920, 1080])
-[LOG] Rendering splash: 2 years!
-[LOG] Splash color: 55ffffff
-[LOG] Splash font size: 14, pos: 922.46, 1042.42
-[LOG] Submitting viewport dest size 1366x768 for 81130a10
-[LOG] handlePreferredScale: 1.00 for 563781130a10
-[?2004l
-[1m[7m%[27m[1m[0m                                                                                                                                                                     ]2;shivang@archlinux:~/.config/ml4w/scripts]1;../ml4w/scripts]7;file://archlinux/home/shivang/.config/ml4w/scripts\[0m[27m[24m[J
-[1;36m.config/ml4w/scripts[0m 
-[1;32m➜[0m [K[?1h[?2004h[?2004l
-[1m[7m%[27m[1m[0m                                                                                                                                                                     ]2;shivang@archlinux:~/.config/ml4w/scripts]1;../ml4w/scripts]7;file://archlinux/home/shivang/.config/ml4w/scripts\[0m[27m[24m[J
-[1;36m.config/ml4w/scripts[0m 
-[1;32m➜[0m [K[?1h[?2004h
-Script done on 2024-12-22 01:42:32+05:30 [COMMAND_EXIT_CODE="0"]
