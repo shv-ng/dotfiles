@@ -9,7 +9,7 @@
 ~/.config/nvim/
 ~/.config/rofi/
 ~/.config/starship/
-~/.config/tmux/
+~/.config/tmux/tmux.conf
 ~/.config/uv/
 ~/.config/waybar/
 ~/.config/yay/
