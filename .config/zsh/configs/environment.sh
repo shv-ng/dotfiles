@@ -8,4 +8,5 @@ export TMUX_CONF="$HOME/.config/tmux/tmux.conf"
 export PATH="$HOME/.local/share/nvim/mason/bin:$PATH"
 
 source "$HOME/.local/bin/env"
-
+source "$HOME/.config/zsh/.zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+source "$HOME/.config/zsh/.zsh-autosuggestions/zsh-autosuggestions.zsh"
