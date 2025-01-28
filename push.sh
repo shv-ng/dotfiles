@@ -2,8 +2,8 @@
 # Copy from ~/.config to ~/dotfiles
 #
 # Remove existing dotfiles
-rm -rf config
-rm -rf mozilla
+rm -rf .config
+rm -rf .mozilla
 
 # Python script to copy from .config to dotfiles/config
 python3 copy_to_dotfiles.py
