@@ -1,6 +1,6 @@
 
 # Copy from ~/.config to ~/dotfiles
-#
+
 # Remove existing dotfiles
 rm -rf .config
 rm -rf .mozilla
