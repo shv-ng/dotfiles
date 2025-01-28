@@ -13,7 +13,7 @@ with open("files_to_copy.txt") as f:
         src = Path(path).expanduser()
 
         # Replace "~/" with "~/dotfiles/" to map to the destination structure
-        dist_str = path.replace("~/.", "~/dotfiles/")
+        dist_str = path.replace("~/", "~/dotfiles/")
         dist = Path(dist_str).expanduser()  # Expand the destination path
 
         if src.is_dir():
