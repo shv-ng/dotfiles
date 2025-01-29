@@ -17,6 +17,7 @@ return { {
       cmp.setup({
         sources = {
           { name = "nvim_lsp" },
+          { name = "luasnip" }
         },
         mapping = cmp.mapping.preset.insert({
           ["<C-Space>"] = cmp.mapping.complete(),
@@ -31,6 +32,10 @@ return { {
           end,
         },
       })
+      local ls = require("luasnip")
+
+      -- Load HTML snippets
+      ls.add_snippets("html", require("snippets.html"))
     end,
   },
 }

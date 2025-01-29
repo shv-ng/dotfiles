@@ -1,4 +1,4 @@
-vim.opt.nu = true -- enable line numbers
+vim.opt.nu = true             -- enable line numbers
 vim.opt.relativenumber = true --relative line numbers
 
 vim.api.nvim_create_autocmd("BufWritePre", {
@@ -24,3 +24,5 @@ if vim.lsp.inlay_hint then
   vim.lsp.inlay_hint.enable(true, { 0 })
 end
 
+
+-- snippet
