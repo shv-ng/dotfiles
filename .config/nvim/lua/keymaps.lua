@@ -24,8 +24,8 @@ vim.keymap.set({ "n", "v" }, "j", "gj", { noremap = true, silent = true })
 vim.keymap.set({ "n", "v" }, "k", "gk", { noremap = true, silent = true })
 
 -- Change buffer
-vim.keymap.set("n", "[b", ":bprevious<CR>", { noremap = true, silent = true }) -- Go to previous buffer
-vim.keymap.set("n", "]b", ":bnext<CR>", { noremap = true, silent = true })     -- Go to next buffer
+vim.keymap.set("n", "<leader>[", ":bprevious<CR>", { noremap = true, silent = true }) -- Go to previous buffer
+vim.keymap.set("n", "<leader>]", ":bnext<CR>", { noremap = true, silent = true })     -- Go to next buffer
 
 -- Plugin
 vim.keymap.set({ "n", "v" }, "<leader>/", ":CommentToggle<CR>")
