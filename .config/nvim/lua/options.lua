@@ -25,4 +25,7 @@ if vim.lsp.inlay_hint then
 end
 
 
--- snippet
+-- load previous state
+if vim.fn.filereadable("./Session.vim") == 1 then
+  vim.cmd("source ./Session.vim")
+end

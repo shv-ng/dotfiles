@@ -27,5 +27,11 @@ vim.keymap.set({ "n", "v" }, "k", "gk", { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>[", ":bprevious<CR>", { noremap = true, silent = true }) -- Go to previous buffer
 vim.keymap.set("n", "<leader>]", ":bnext<CR>", { noremap = true, silent = true })     -- Go to next buffer
 
+-- Tab
+vim.keymap.set("n", "<leader>tn", ":tabnew<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>tq", ":tabclose<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>t]", ":tabprevious<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>t[", ":tabnext<CR>", { noremap = true, silent = true })
+
 -- Plugin
 vim.keymap.set({ "n", "v" }, "<leader>/", ":CommentToggle<CR>")

@@ -44,7 +44,7 @@ return {
       handlers = {
 
         pyright = function()
-          require("lspconfig").pyright.setup({
+          require("lspconfig").basedpyright.setup({
             -- Waiting for a pylsp PR that improves its hover docs
             -- on_attach = function(client)
             -- 	client.server_capabilities.hoverProvider = false
@@ -89,7 +89,7 @@ return {
           })
         end,
 
-              -- this first function is the "default handler"
+        -- this first function is the "default handler"
         -- it applies to every language server without a "custom handler"
         function(server_name)
           require("lspconfig")[server_name].setup({})
