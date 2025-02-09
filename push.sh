@@ -1,5 +1,17 @@
 #!/bin/bash
 
+# Copy from ~/.config to ~/dotfiles
+
+# Remove existing dotfiles
+rm -rf .config
+rm -rf .mozilla
+
+# Python script to copy from .config to dotfiles/config
+python3 copy_to_dotfiles.py
+#
+# Remove pycache
+rm -rf __pycache__/
+
 # Get list of changed files
 git status --porcelain | while read -r status file; do
     # Extract file status
