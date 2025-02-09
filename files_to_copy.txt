@@ -12,7 +12,6 @@
 ~/.config/tmux/tmux.conf
 ~/.config/uv/
 ~/.config/waybar/
-~/.config/yay/
 ~/.config/zsh/
 ~/.mozilla/firefox/kfxpgy35.default-release-1733027217126/chrome/
 
