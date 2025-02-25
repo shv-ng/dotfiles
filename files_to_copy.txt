@@ -5,7 +5,6 @@
 ~/.config/htop/
 ~/.config/hypr/
 ~/.config/kitty/
-~/.config/ml4w/
 ~/.config/nvim/
 ~/.config/rofi/
 ~/.config/starship/
