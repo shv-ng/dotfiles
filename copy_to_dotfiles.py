@@ -20,4 +20,7 @@ with open("files_to_copy.txt") as f:
             parent = Path("/".join(dist_str.split("/")[:-1])).expanduser()
             parent.mkdir(exist_ok=True, parents=True)
             # Copy the file to the destination
-            shutil.copy2(src, parent)
+            try:
+                shutil.copy2(src, parent)
+            except FileNotFoundError:
+                continue
