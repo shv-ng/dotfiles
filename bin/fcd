@@ -1,0 +1,6 @@
+
+cd "$(fd --type d \
+    --exclude target \
+    --exclude build \
+    --exclude node_modules \
+    | fzf)"
