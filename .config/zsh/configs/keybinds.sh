@@ -1,10 +1,17 @@
 
-# Fuzzy cd
-zle -N fcd
-zle -N fcda
+# widget
+fcd-widget(){
+  fcd
+}
+fcda-widget(){
+  fcda
+}
 
-# ctrl+f
-bindkey "^f" fcd 
-bindkey "^[^f" fcda
+zle -N fcd-widget
+zle -N fcda-widget
+
+bindkey "^f" fcd-widget
+bindkey -s "^t" 'tmux-sessionizer^M'
+bindkey "^[^f" fcda-widget
 
 bindkey '^@' forward-word
