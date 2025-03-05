@@ -28,16 +28,19 @@ vim.keymap.set("n", "<leader>[", ":bprevious<CR>", { noremap = true, silent = tr
 vim.keymap.set("n", "<leader>]", ":bnext<CR>", { noremap = true, silent = true })     -- Go to next buffer
 
 -- Tab
-vim.keymap.set("n", "<leader>tn", ":tabnew<CR>", { noremap = true, silent = true })
-vim.keymap.set("n", "<leader>tq", ":tabclose<CR>", { noremap = true, silent = true })
-vim.keymap.set("n", "<leader>t]", ":tabprevious<CR>", { noremap = true, silent = true })
-vim.keymap.set("n", "<leader>t[", ":tabnext<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>tc", ":tabnew<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>tx", ":tabclose<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>tp", ":tabprevious<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>tn", ":tabnext<CR>", { noremap = true, silent = true })
 
 
 
 
--- Plugin
-vim.keymap.set({ "n", "v" }, "<leader>/", ":CommentToggle<CR>")
+-- Fzf Lua
+vim.keymap.set("n", "<C-p>", ":FzfLua files<CR>", { silent = true })
+vim.keymap.set("n", "<leader><leader>", ":FzfLua live_grep<CR>", { silent = true })
+vim.keymap.set("n", "<leader>fg", ":FzfLua buffers<CR>", { silent = true })
+vim.keymap.set("n", "<leader>fl", ":FzfLua<CR>", { silent = true })
 
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
@@ -45,3 +48,9 @@ vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
+vim.keymap.set("n", "<leader>x", function()
+  vim.cmd("!chmod +x " .. vim.fn.expand("%"))
+end)
+
+vim.keymap.set("x", "j", "jzz")
+vim.keymap.set("x", "k", "kzz")
