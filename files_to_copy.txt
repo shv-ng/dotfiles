@@ -2,6 +2,7 @@
 ~/.config/Code/User/settings.json
 ~/.config/Code/User/keybindings.json
 ~/.config/dunst/
+~/.config/fastfetch/
 ~/.config/htop/
 ~/.config/hypr/
 ~/.config/kitty/
@@ -9,6 +10,7 @@
 ~/.config/rofi/
 ~/.config/starship/
 ~/.config/tmux/tmux.conf
+~/.config/Thunar/
 ~/.config/uv/
 ~/.config/waybar/
 ~/.config/zsh/
