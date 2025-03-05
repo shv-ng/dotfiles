@@ -1,10 +1,14 @@
 
 # widget
 fcd-widget(){
-  fcd
+  cd "$(fd --type d \
+      --exclude target \
+      --exclude build \
+      --exclude node_modules \
+      | fzf)"
 }
 fcda-widget(){
-  fcda
+  cd "$(fd --full-path -H --type d | fzf)"
 }
 
 zle -N fcd-widget
