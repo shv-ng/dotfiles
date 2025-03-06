@@ -1,1 +1,0 @@
- cd "$(fd --full-path -H --type d | fzf)"
