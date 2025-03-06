@@ -12,27 +12,43 @@ python3 copy_to_dotfiles.py
 # Remove pycache
 rm -rf __pycache__/
 
-# Get list of changed files
-git status --porcelain | while read -r status file; do
-    # Extract file status
+# Initialize arrays for each type of change
+modified=()
+added=()
+deleted=()
+untracked=()
+
+# Get the list of changed files
+while read -r status file; do
     change_type=$(echo "$status" | awk '{print $1}')
     
-    # Generate commit message based on status
     case "$change_type" in
-        M) commit_msg="Modified $file" ;;
-        A) commit_msg="Added $file" ;;
-        D) commit_msg="Deleted $file" ;;
-        "??") commit_msg="Untracked $file" ;; # Optional, can ignore if not needed
-        *) commit_msg="Updated $file" ;;
+        M) modified+=("$file") ;;
+        A) added+=("$file") ;;
+        D) deleted+=("$file") ;;
+        "??") untracked+=("$file") ;;
     esac
 
-    # Add, commit, and push
+    # Add file to staging
     git add "$file"
+done < <(git status --porcelain)
+
+# Construct commit message
+commit_msg=""
+
+[[ ${#added[@]} -gt 0 ]] && commit_msg+="Added: ${added[*]}; "
+[[ ${#modified[@]} -gt 0 ]] && commit_msg+="Modified: ${modified[*]}; "
+[[ ${#deleted[@]} -gt 0 ]] && commit_msg+="Deleted: ${deleted[*]}; "
+[[ ${#untracked[@]} -gt 0 ]] && commit_msg+="Untracked: ${untracked[*]}; "
+
+# Remove trailing semicolon and space
+commit_msg=${commit_msg%"; "}
+
+# Commit and push if there are changes
+if [[ -n "$commit_msg" ]]; then
     git commit -m "$commit_msg"
-done
-
-# Push all committed changes
-git push origin "$(git branch --show-current)"
-
-echo "All changes committed and pushed successfully!"
+    git push origin "$(git branch --show-current)"
+else
+    echo "No changes to commit."
+fi
 
