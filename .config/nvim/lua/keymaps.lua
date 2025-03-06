@@ -1,13 +1,4 @@
--- Set indentation and tab behavior
-vim.opt.expandtab = true -- Convert tabs to spaces
-vim.opt.tabstop = 2      -- Tab width of 2 spaces
-vim.opt.softtabstop = 2  -- Backspace/delete treats tab as 2 spaces
-vim.opt.shiftwidth = 2   -- Indentation width of 2 spaces
-
--- General settings
-vim.opt.swapfile = false -- Disable swap files
-vim.opt.scrolloff = 8    -- Keep 8 lines visible when scrolling
-vim.g.mapleader = " "    -- Set space as the leader key
+vim.g.mapleader = " " -- Set space as the leader key
 
 -- Window navigation shortcuts
 vim.keymap.set("n", "<C-h>", ":wincmd h<CR>")
@@ -16,8 +7,8 @@ vim.keymap.set("n", "<C-k>", ":wincmd k<CR>")
 vim.keymap.set("n", "<C-l>", ":wincmd l<CR>")
 
 -- Copy/paste using system clipboard
-vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]]) -- Copy
-vim.keymap.set({ "n", "v" }, "<leader>p", [["+p]]) -- Paste
+vim.keymap.set({ "n", "v" }, "<leader>y", "\"+y") -- Copy
+vim.keymap.set({ "n", "v" }, "<leader>p", "\"+p") -- Paste
 
 -- Smooth movement in wrapped lines
 vim.keymap.set({ "n", "v" }, "j", "gj", { noremap = true, silent = true })
