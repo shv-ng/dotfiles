@@ -1,0 +1,13 @@
+[Unit]
+Description=Battery Monitor Script
+After=graphical.target
+
+[Service]
+ExecStart=/home/shivang/bin/battery-monitor.sh
+Restart=always
+RestartSec=10
+Environment=DISPLAY=:0
+Environment=XDG_RUNTIME_DIR=/run/user/1000
+
+[Install]
+WantedBy=default.target

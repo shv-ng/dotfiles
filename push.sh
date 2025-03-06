@@ -7,7 +7,7 @@ rm -rf .config
 rm -rf .mozilla
 
 # Python script to copy from .config to dotfiles/config
-python3 copy_to_dotfiles.py
+python3 make_copy.py
 
 # Remove pycache
 rm -rf __pycache__/
