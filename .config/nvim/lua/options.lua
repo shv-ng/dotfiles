@@ -1,5 +1,18 @@
-vim.opt.nu = true             -- enable line numbers
-vim.opt.relativenumber = true --relative line numbers
+local set = vim.opt
+
+set.nu = true             -- enable line numbers
+set.relativenumber = true --relative line numbers
+
+-- Set indentation and tab behavior
+set.expandtab = true -- Convert tabs to spaces
+set.tabstop = 2      -- Tab width of 2 spaces
+set.softtabstop = 2  -- Backspace/delete treats tab as 2 spaces
+set.shiftwidth = 2   -- Indentation width of 2 spaces
+
+-- General settings
+set.swapfile = false -- Disable swap files
+set.scrolloff = 8    -- Keep 8 lines visible when scrolling
+
 
 vim.api.nvim_create_autocmd("BufWritePre", {
   group = vim.api.nvim_create_augroup("FormatOnSave", { clear = true }),
