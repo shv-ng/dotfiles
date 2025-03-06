@@ -6,6 +6,8 @@ return {
     { "blink.cmp" },
     { "williamboman/mason.nvim" },
     { "williamboman/mason-lspconfig.nvim" },
+
+
   },
   init = function()
     vim.opt.signcolumn = "yes"
@@ -34,15 +36,12 @@ return {
     })
 
     require("mason-lspconfig").setup({
-      ensure_installed = {},
+      ensure_installed = { "lua_ls", "basedpyright", "pylsp", "ruff", },
+      automatic_installation = false,
       handlers = {
 
         pyright = function()
           require("lspconfig").basedpyright.setup({
-            -- Waiting for a pylsp PR that improves its hover docs
-            -- on_attach = function(client)
-            -- 	client.server_capabilities.hoverProvider = false
-            -- end,
             settings = {
               python = {
                 analysis = {
@@ -66,17 +65,6 @@ return {
                   pycodestyle = { enabled = false },
                   pydocstyle = { enabled = false },
                   autopep8 = { enabled = false },
-                },
-              },
-            },
-          })
-        end,
-        lua_ls = function()
-          require("lspconfig").lua_ls.setup({
-            settings = {
-              diagnostics = {
-                globals = {
-                  "vim",
                 },
               },
             },
