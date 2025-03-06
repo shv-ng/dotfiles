@@ -33,11 +33,12 @@ return {
       },
       view_options = {
         show_hidden = true,
-        is_always_hidden = function(name, bufnr)
+        is_always_hidden = function(name, _)
           local m = name:match('^..$')
           return m ~= nil
         end
       },
+      skip_confirm_for_simple_edits = true,
     })
     vim.keymap.set("n", "-", ":Oil<CR>", {})
     vim.cmd("Oil")
