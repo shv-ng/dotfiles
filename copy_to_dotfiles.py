@@ -2,7 +2,7 @@ import shutil
 from pathlib import Path
 
 # Open the file containing the list of paths to copy
-with open("files_to_copy.txt") as f:
+with open("files_to_push.txt") as f:
     for path in f:
         path = path.strip()  # Remove any leading or trailing whitespace
         if not path:  # Skip empty lines
