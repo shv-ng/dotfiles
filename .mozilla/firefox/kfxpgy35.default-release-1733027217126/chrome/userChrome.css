@@ -25,25 +25,14 @@ body {
   display: none !important;
 }
 
-#TabsToolbar {
-  display: none !important;
-}
+/*#TabsToolbar {*/
+/*  display: none !important;*/
+/*}*/
 
 #nav-bar {
   margin-top: 15px;
   margin-bottom: 10px;
 }
-
-.tab-close-button,
-#alltabs-button,
-#tabbrowser-arrowscrollbox-periphery,
-hbox.titlebar-spacer:nth-child(3),
-#tracking-protection-icon-container,
-#identity-icon-box,
-.tab-icon-image {
-  display: none;
-}
-
 .tabbrowser-tab {
   max-width: 150px !important;
 }
@@ -51,3 +40,5 @@ hbox.titlebar-spacer:nth-child(3),
 #urlbar-input {
   padding-left: 10px !important;
 }
+
+
