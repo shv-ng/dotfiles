@@ -36,8 +36,8 @@ return {
     })
 
     require("mason-lspconfig").setup({
-      ensure_installed = { "lua_ls", "basedpyright", "pylsp", "ruff", },
-      automatic_installation = false,
+      ensure_installed = { "lua_ls", "basedpyright", "pylsp", "ruff", "emmet_language_server" },
+      automatic_installation = true,
       handlers = {
 
         pyright = function()
@@ -68,6 +68,12 @@ return {
                 },
               },
             },
+          })
+        end,
+
+        html = function()
+          require("lspconfig").html.setup({
+            filetypes = { 'html', 'htmldjango' }
           })
         end,
         -- this first function is the "default handler"
