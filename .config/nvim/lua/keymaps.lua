@@ -7,8 +7,10 @@ vim.keymap.set("n", "<C-k>", ":wincmd k<CR>")
 vim.keymap.set("n", "<C-l>", ":wincmd l<CR>")
 
 -- Copy/paste using system clipboard
-vim.keymap.set({ "n", "v" }, "<leader>y", "\"+y") -- Copy
-vim.keymap.set({ "n", "v" }, "<leader>p", "\"+p") -- Paste
+vim.keymap.set({ "n", "v" }, "<leader>y", "\"+y")
+vim.keymap.set({ "n", "v" }, "<leader>Y", "\"+Y")
+vim.keymap.set({ "n", "v" }, "<leader>p", "\"+p")
+vim.keymap.set({ "n", "v" }, "<leader>P", "\"+P")
 
 -- Smooth movement in wrapped lines
 vim.keymap.set({ "n", "v" }, "j", "gj", { noremap = true, silent = true })
@@ -44,3 +46,6 @@ vim.keymap.set("n", "N", "Nzzzv")
 vim.keymap.set("n", "<leader>x", function()
   vim.cmd("!chmod +x " .. vim.fn.expand("%"))
 end)
+
+-- change filetype to htmldjango
+vim.keymap.set("n", "<leader>dj", ":set filetype=htmldjango<CR>")

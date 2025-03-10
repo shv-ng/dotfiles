@@ -23,7 +23,7 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 })
 
 vim.cmd([[
-    command! FormatAll lua vim.lsp.buf.format({async = true})
+command! FormatAll lua vim.lsp.buf.format({async = true})
 ]])
 
 vim.lsp.handlers["textDocument/inlayHint"] = vim.lsp.handlers["textDocument/inlayHint"] or function(err, result, ctx)
@@ -38,6 +38,7 @@ end
 
 
 local session_file = "Session.vim"
+
 
 -- Load session if it exists
 if vim.fn.filereadable(session_file) == 1 then

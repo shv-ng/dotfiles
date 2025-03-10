@@ -41,6 +41,8 @@ return {
       skip_confirm_for_simple_edits = true,
     })
     vim.keymap.set("n", "-", ":Oil<CR>", {})
-    vim.cmd("Oil")
+    if vim.fn.argc() == 0 then
+      vim.cmd("Oil")
+    end
   end,
 }
