@@ -22,6 +22,7 @@ vim.api.nvim_create_autocmd("BufWritePre", {
   end,
 })
 
+
 vim.cmd([[
 command! FormatAll lua vim.lsp.buf.format({async = true})
 ]])

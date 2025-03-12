@@ -3,7 +3,7 @@
 if [[ $# -eq 1 ]]; then
   selected=$1
 else
-  selected=$(fd . ~/ ~/personal ~/.config --type d --min-depth 1 --max-depth 1 | fzf)
+  selected=$(fd . ~/ ~/personal ~/.config --type d --min-depth 1 --max-depth 1 -L | fzf)
 fi
 
 if [[ -z $selected ]]; then
