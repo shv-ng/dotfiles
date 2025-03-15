@@ -31,6 +31,8 @@ vim.keymap.set("n", "<C-p>", ":FzfLua files<CR>", { silent = true })            
 vim.keymap.set("n", "<leader><leader>", ":FzfLua live_grep<CR>", { silent = true }) -- Live grep
 vim.keymap.set("n", "<leader>fg", ":FzfLua buffers<CR>", { silent = true })         -- Search buffers
 vim.keymap.set("n", "<leader>fl", ":FzfLua<CR>", { silent = true })                 -- Open FzfLua
+vim.keymap.set("n", "<leader>ff", ":FzfLua files cwd=%:p:h<CR>")
+
 
 -- Move selected lines up/down in visual mode
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")

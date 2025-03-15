@@ -1,4 +1,0 @@
-#!/bin/bash
-
-activate_venv
-# nvim "$@"

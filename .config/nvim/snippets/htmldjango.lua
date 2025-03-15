@@ -14,7 +14,7 @@ return {
     i(3, "styles.css"), t({ "\">", "</head>", "<body>", "  " }), i(4, "Content goes here..."),
     t({ "", "</body>", "</html>" })
   }),
-  s("block", { t("{% block "), i(1, "name"), t({ " %}", "  " }), i(2, "content"), t({ "", "{% endblock %}" }) }),
+  s("block", { t("{% block '"), i(1, "name"), t({ "' %}", "  " }), i(2, "content"), t({ "", "{% endblock %}" }) }),
   s("if", { t("{% if "), i(1, "condition"), t({ " %}", "  " }), i(2, "content"), t({ "", "{% endif %}" }) }),
   s("ifel",
     { t("{% if "), i(1, "condition"), t({ " %}", "  " }), i(2, "true_content"), t({ "", "{% else %}", "  " }), i(3,

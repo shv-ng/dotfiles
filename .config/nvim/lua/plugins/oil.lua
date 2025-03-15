@@ -32,7 +32,6 @@ return {
         end,
       },
       view_options = {
-        show_hidden = true,
         is_always_hidden = function(name, _)
           local m = name:match('^..$')
           return m ~= nil

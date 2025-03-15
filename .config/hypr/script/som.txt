@@ -1,2 +1,0 @@
-ExecStart=
-ExecStart=-/bin/agetty -o '-p -f -- \\u' --noclear --autologin shivang %I $TERM
