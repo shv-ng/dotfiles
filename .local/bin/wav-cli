@@ -1,0 +1,17 @@
+#!/bin/bash
+
+SCRIPT_DIR="$HOME/.local/share/wav-cli"
+PLAYER_SCRIPT="$SCRIPT_DIR/scripts/player.sh"
+
+if [[ ! -f "$PLAYER_SCRIPT" ]]; then
+    echo "❌ Error: player.sh not found in $SCRIPT_DIR"
+    exit 1
+fi
+
+if [[ "$1" == "--update" ]]; then
+    source $SCRIPT_DIR/install.sh
+    exit 0
+fi
+# Execute player.sh with all passed arguments
+bash "$PLAYER_SCRIPT" "$@"
+

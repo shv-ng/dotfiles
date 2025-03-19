@@ -9,7 +9,7 @@ if [[ -f AUTO_LOGIN_FILE ]]; then
     AUTO_LOGIN_MESSAGE=""
 else
     COUNT_HASH=$(cat $AUTO_LOGIN_FILE | rg -c "#")
-    AUTO_LOGIN_MESSAGE="(Autologin: $([ $COUNT_HASH > 0 ]  && echo "off"||echo "on"))"
+    AUTO_LOGIN_MESSAGE="(Autologin: $([[ $COUNT_HASH > 0 ]]  && echo "off"||echo "on"))"
 
 fi
 
