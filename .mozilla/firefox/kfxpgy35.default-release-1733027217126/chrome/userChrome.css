@@ -25,14 +25,12 @@ body {
   display: none !important;
 }
 
-/*#TabsToolbar {*/
-/*  display: none !important;*/
-/*}*/
-
 #nav-bar {
   margin-top: 15px;
   margin-bottom: 10px;
+  /*display: none;*/
 }
+
 .tabbrowser-tab {
   max-width: 150px !important;
 }
@@ -41,4 +39,9 @@ body {
   padding-left: 10px !important;
 }
 
-
+#navigator-toolbox:hover #nav-bar {
+  display: flex !important; 
+}
+#navigator-toolbox[fullscreenShouldAnimate] {
+  transition: 100ms !important;
+}

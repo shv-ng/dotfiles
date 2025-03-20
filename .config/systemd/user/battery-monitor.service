@@ -3,7 +3,7 @@ Description=Battery Monitor Script
 After=graphical.target
 
 [Service]
-ExecStart=/home/shivang/bin/battery-monitor.sh
+ExecStart=/home/shivang/.local/bin/battery-monitor.sh
 Restart=always
 RestartSec=10
 Environment=DISPLAY=:0
