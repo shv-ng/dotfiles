@@ -2,6 +2,7 @@ local set = vim.opt
 
 set.nu = true             -- enable line numbers
 set.relativenumber = true --relative line numbers
+set.linebreak = true
 
 -- Set indentation and tab behavior
 set.expandtab = true -- Convert tabs to spaces

@@ -1,11 +1,9 @@
 return {
   {
     "folke/lazydev.nvim",
-    ft = "lua", -- only load on lua files
+    ft = "lua",
     opts = {
       library = {
-        -- See the configuration section for more details
-        -- Load luvit types when the `vim.uv` word is found
         { path = "${3rd}/luv/library", words = { "vim%.uv" } },
       },
     },
@@ -17,7 +15,7 @@ return {
         'L3MON4D3/LuaSnip',
         version = 'v2.*',
         config = function()
-          require('luasnip.loaders.from_lua').load({ paths = '~/.config/nvim/snippets/' })
+          require('luasnip.loaders.from_lua').load({ paths = { '~/.config/nvim/snippets/' } })
         end
       },
     },
@@ -37,16 +35,16 @@ return {
       },
       snippets = { preset = 'luasnip' },
       sources = {
-        default = { 'lsp', 'path', 'snippets', 'buffer', "lazydev" },
+        default = { 'lsp', 'path', 'snippets', 'buffer', "lazydev", },
         providers = {
           lazydev = {
             name = "LazyDev",
             module = "lazydev.integrations.blink",
-            -- make lazydev completions top priority (see `:h blink.cmp`)
             score_offset = 100,
           },
         },
       },
     },
     opts_extend = { "sources.default" }
-  }, }
+  },
+}

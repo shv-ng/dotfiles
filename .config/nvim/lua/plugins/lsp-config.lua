@@ -36,7 +36,7 @@ return {
     })
 
     require("mason-lspconfig").setup({
-      ensure_installed = { "lua_ls", "basedpyright", "pylsp", "ruff", "emmet_language_server" },
+      ensure_installed = { "lua_ls", "basedpyright", "pylsp", "ruff", "emmet_language_server", "gopls" },
       automatic_installation = true,
       handlers = {
 
