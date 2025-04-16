@@ -15,6 +15,6 @@
 ~/.config/uv/
 ~/.config/waybar/
 ~/.config/zsh/
-~/.mozilla/firefox/kfxpgy35.default-release-1733027217126/chrome/
+~/.mozilla/firefox/8461zk2u.default-release-1744796796185/chrome/
 ~/.local/bin/
 
