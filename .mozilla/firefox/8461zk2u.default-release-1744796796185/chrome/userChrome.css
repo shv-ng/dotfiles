@@ -1,9 +1,11 @@
+/* Global Font */
 *,
 *::before,
 *::after {
   font-family: 'JetBrainsMono Nerd Font', 'JetBrains Mono', monospace !important;
 }
 
+/* Body Styling */
 body {
   font-size: 14px;
   line-height: 1;
@@ -12,6 +14,7 @@ body {
   font-style: normal;
 }
 
+/* Toolbar and Bar Styling */
 #urlbar-background,
 #searchbar {
   border-radius: 20px !important;
@@ -25,23 +28,85 @@ body {
   display: none !important;
 }
 
-#nav-bar {
-  margin-top: 15px;
-  margin-bottom: 10px;
-  /*display: none;*/
+#navigator-toolbox {
+  visibility: hidden !important;
+  height: 0 !important;
+  overflow: visible !important;
 }
 
+#navigator-toolbox:hover #nav-bar {
+  display: flex !important;
+}
+
+#navigator-toolbox[fullscreenShouldAnimate] {
+  transition: 100ms !important;
+}
+
+#sidebar-main {
+  width: 60px !important;
+}
+
+/* Tab Styling */
 .tabbrowser-tab {
   max-width: 150px !important;
 }
 
+/* URL Bar */
 #urlbar-input {
   padding-left: 10px !important;
 }
 
-#navigator-toolbox:hover #nav-bar {
-  display: flex !important; 
+#urlbar {
+  display: block !important;
+  margin: 5px !important;
+  position: fixed !important;
+  top: 20% !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  width: 60vw !important;
+  z-index: 999 !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  transition: opacity 0.2s ease;
+  background-color: rgba(30, 30, 30, 0.4) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border-radius: 20px !important;
+  box-shadow:
+    0 4px 20px rgba(0, 0, 0, 0.4),
+    0 0 10px rgba(128, 128, 128, 0.3),
+    inset 0 0 4px rgba(255, 255, 255, 0.1) !important;
+  visibility: visible !important;
 }
-#navigator-toolbox[fullscreenShouldAnimate] {
-  transition: 100ms !important;
+
+#urlbar:focus-within {
+  opacity: 1 !important;
+  pointer-events: auto !important;
+  background-color: rgba(30, 30, 30, 0.4) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  box-shadow:
+    0 4px 20px rgba(0, 0, 0, 0.5),
+    0 0 8px rgba(160, 160, 160, 0.5),
+    inset 0 0 5px rgba(255, 255, 255, 0.05) !important;
+}
+
+#urlbar[focused="true"] > #urlbar-background {
+  box-shadow: none !important;
+  background-color: transparent !important;
+  border: none !important;
+}
+
+.urlbar-input-container {
+  min-height: 40px !important;
+}
+
+#urlbar-go-button {
+  display: none !important;
+}
+
+/* Buttons */
+#forward-button,
+#tabs-newtab-button {
+  display: none !important;
 }
