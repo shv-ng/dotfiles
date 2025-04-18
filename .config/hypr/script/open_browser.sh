@@ -4,15 +4,15 @@ current_ws=$(hyprctl activeworkspace -j | jq -r '.id')
 
 if [ "$current_ws" -eq 2 ]; then
     if pgrep firefox > /dev/null; then
-        firefox --new-window
+      :
     else
         nohup firefox >/dev/null 2>&1 &
+        sleep 0.5
+        exit 0
     fi
-    sleep 0.5
-    exit 0
 fi
 
-website=$(echo -e 'Whatsapp\nYouTube\nLinkedIn\nChatGPT\nGitHub\nYoutube Music\nGMail\nGoogle Docs\nGoogle Sheets' | fzf --layout reverse --border )
+website=$(echo -e 'Normal\nWhatsapp\nYouTube\nLinkedIn\nChatGPT\nGitHub\nYoutube Music\nGMail\nGoogle Docs\nGoogle Sheets' | fzf --layout reverse --border )
 
 case "$website" in
     "Whatsapp") url="https://web.whatsapp.com" ;;
