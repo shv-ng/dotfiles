@@ -1,4 +1,3 @@
-/* Global Font */
 *,
 *::before,
 *::after {
@@ -43,7 +42,8 @@ body {
 }
 
 #sidebar-main {
-  width: 60px !important;
+  width: 56px !important;
+  
 }
 
 /* Tab Styling */
@@ -109,4 +109,19 @@ body {
 #forward-button,
 #tabs-newtab-button {
   display: none !important;
+}
+
+
+#vertical-tabs-newtab-button, .tools-and-extensions{
+  display: none !important;
+}
+
+@media only screen and (max-width:800px){
+  #sidebar-main{
+  display: none !important;
+}
+}
+
+#sidebar-main[sidebar-launcher-expanded]{
+  display: none;
 }

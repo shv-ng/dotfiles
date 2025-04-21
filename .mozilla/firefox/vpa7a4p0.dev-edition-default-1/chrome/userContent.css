@@ -1,0 +1,8 @@
+
+@-moz-document url("about:home"),url("about:blank"),url("about:newtab"),url("about:privatebrowsing"){
+.personalizeButtonWrapper,  .wallpaper-attribution{
+    display:none !important;
+
+  }
+
+}

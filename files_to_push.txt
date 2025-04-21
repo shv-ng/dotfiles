@@ -15,6 +15,6 @@
 ~/.config/uv/
 ~/.config/waybar/
 ~/.config/zsh/
-~/.mozilla/firefox/8461zk2u.default-release-1744796796185/chrome/
+~/.mozilla/firefox/vpa7a4p0.dev-edition-default-1/chrome/
 ~/.local/bin/
 

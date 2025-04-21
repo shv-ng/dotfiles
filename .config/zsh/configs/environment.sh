@@ -8,3 +8,4 @@ export PATH="$PATH:$HOME/.local/bin"
 export PATH=$PATH:/usr/local/go/bin
 # source "$HOME/.local/bin/env"
 
+alias firefox="firefox-developer-edition"
