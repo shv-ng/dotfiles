@@ -30,12 +30,12 @@ if  pgrep -f "firefox-developer-edition" > /dev/null; then
     xdg-open "$url"
 else
     if [ -z "$url" ]; then
-        nohup firefox-developer-edition >/dev/null 2>&1 &
         hyprctl dispatch workspace 2
+        nohup firefox-developer-edition >/dev/null 2>&1 &
     else
+        hyprctl dispatch workspace 2
         nohup firefox-developer-edition "$url" >/dev/null 2>&1 &
 
-        hyprctl dispatch workspace 2
     fi
     sleep 0.2
 fi
