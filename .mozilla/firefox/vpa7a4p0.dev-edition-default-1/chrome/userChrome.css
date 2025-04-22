@@ -43,7 +43,7 @@ body {
 
 #sidebar-main {
   width: 56px !important;
-  
+
 }
 
 /* Tab Styling */
@@ -118,10 +118,44 @@ body {
 
 @media only screen and (max-width:800px){
   #sidebar-main{
-  display: none !important;
-}
+    display: none !important;
+  }
 }
 
 #sidebar-main[sidebar-launcher-expanded]{
   display: none;
+}
+
+
+@namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
+
+/* Only show the loading bar when a tab is busy */
+#statuspanel[type="status"]::after {
+  content: "";
+  position: fixed;
+  top: 0; /* use bottom: 0; if you prefer bottom */
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    currentColor 30%,
+    AccentColor 70%,
+    transparent 100%
+    );
+  background-size: 200% 100%;
+  background-position: -100% 0;
+  animation: infiniteSlide 1s linear infinite;
+  transition: opacity 0.3s ease;
+  z-index: 999999;
+  pointer-events: none;
+}
+@keyframes infiniteSlide {
+0% {
+  background-position: -100% 0;
+}
+100% {
+  background-position: 100% 0;
+}
 }

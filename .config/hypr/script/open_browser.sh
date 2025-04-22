@@ -5,7 +5,7 @@ current_ws=$(hyprctl activeworkspace -j | jq -r '.id')
 if [ "$current_ws" -eq 2 ]; then
     if ! pgrep -f "firefox-developer-edition" > /dev/null; then
         nohup firefox-developer-edition > /dev/null 2>&1 &
-        sleep 0.1
+        sleep 0.2
         exit 0
     fi
 fi
@@ -26,14 +26,16 @@ case "$website" in
     *) url="about:home" ;;
 esac
 
-hyprctl dispatch workspace 2
 if  pgrep -f "firefox-developer-edition" > /dev/null; then
     xdg-open "$url"
 else
-    if [ -z $url ]; then
+    if [ -z "$url" ]; then
         nohup firefox-developer-edition >/dev/null 2>&1 &
+        hyprctl dispatch workspace 2
     else
         nohup firefox-developer-edition "$url" >/dev/null 2>&1 &
+
+        hyprctl dispatch workspace 2
     fi
-    sleep 0.5
+    sleep 0.2
 fi
