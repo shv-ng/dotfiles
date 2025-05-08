@@ -1,8 +1,15 @@
 
 @-moz-document url("about:home"),url("about:blank"),url("about:newtab"),url("about:privatebrowsing"){
-.personalizeButtonWrapper,  .wallpaper-attribution{
+  .personalizeButtonWrapper,  .wallpaper-attribution, .newtab-main{
     display:none !important;
 
   }
-
+  /*#root {*/
+  /*  background-image: url("https://picsum.photos/2560/1440?random=999");*/
+  /*  background-size: cover;*/
+  /*  background-position: center;*/
+  /*  background-repeat: no-repeat;*/
+  /**/
+  /*}*/
+  /**/
 }

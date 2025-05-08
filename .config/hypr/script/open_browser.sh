@@ -27,15 +27,16 @@ case "$website" in
 esac
 
 if  pgrep -f "firefox-developer-edition" > /dev/null; then
-    xdg-open "$url"
+        nohup firefox-developer-edition "$url" >/dev/null 2>&1 &
+        hyprctl dispatch workspace 2
 else
     if [ -z "$url" ]; then
-        hyprctl dispatch workspace 2
         nohup firefox-developer-edition >/dev/null 2>&1 &
-    else
         hyprctl dispatch workspace 2
+    else
         nohup firefox-developer-edition "$url" >/dev/null 2>&1 &
+        hyprctl dispatch workspace 2
 
     fi
-    sleep 0.2
+    sleep 0.4
 fi
