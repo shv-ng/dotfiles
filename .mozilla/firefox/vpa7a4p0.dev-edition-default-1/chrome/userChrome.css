@@ -79,6 +79,13 @@ body {
   visibility: visible !important;
 }
 
+#urlbar-searchmode-switcher {
+  border-radius: 100px !important;
+}
+
+#urlbar-zoom-button {
+  border-radius: 100px !important;
+}
 #urlbar:focus-within {
   opacity: 1 !important;
   pointer-events: auto !important;
