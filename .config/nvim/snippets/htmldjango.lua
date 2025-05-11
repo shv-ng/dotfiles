@@ -33,4 +33,8 @@ return {
   s("messages",
     { t("{% if messages %}"), t({ "", "  <ul>" }), t({ "", "  {% for message in messages %}" }), t({ "",
       "    <li>{{ message }}</li>" }), t({ "", "  {% endfor %}" }), t({ "", "  </ul>" }), t({ "", "{% endif %}" }) }),
+
+  s("comment", {
+    t("{% comment %}"), t({ "", "  " }), i(1, "Comment"), t({ "", "{% endcomment %}" })
+  })
 }
