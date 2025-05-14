@@ -10,6 +10,7 @@
 ~/.config/rofi/
 ~/.config/starship/
 ~/.config/systemd/user/battery-monitor.service
+~/.config/systemd/user/take-break.service
 ~/.config/tmux/tmux.conf
 ~/.config/Thunar/
 ~/.config/uv/
