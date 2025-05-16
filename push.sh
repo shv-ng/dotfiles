@@ -22,7 +22,7 @@ untracked=()
 # Get the list of changed files
 while read -r status file; do
     change_type=$(echo "$status" | awk '{print $1}')
-    
+
     case "$change_type" in
         M) modified+=("$file") ;;
         A) added+=("$file") ;;
@@ -46,10 +46,6 @@ commit_msg=""
 commit_msg=${commit_msg%"; "}
 
 # Commit and push if there are changes
-if [[ -n "$commit_msg" ]]; then
-    git commit -m "$commit_msg"
-    git push origin "$(git branch --show-current)"
-else
-    echo "No changes to commit."
-fi
+git commit -m "$commit_msg"
+git push origin "$(git branch --show-current)"
 
