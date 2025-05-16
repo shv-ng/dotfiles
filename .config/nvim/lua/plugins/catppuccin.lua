@@ -24,17 +24,18 @@ return {
         no_bold = false,               -- Force no bold
         no_underline = false,          -- Force no underline
         styles = {                     -- Handles the styles of general hi groups (see `:h highlight-args`):
-          comments = { "italic" },     -- Change the style of comments
+          comments = { "italic" },
+          functions = { "italic" },
+          keywords = { "italic" },
+          statements = { "italic" },
+          types = { "italic" },
           conditionals = { "italic" },
-          loops = {},
-          functions = {},
-          keywords = {},
+          loops = { "italic" },
           strings = {},
           variables = {},
           numbers = {},
           booleans = {},
           properties = {},
-          types = {},
           operators = {},
           -- miscs = {}, -- Uncomment to turn off hard-coded styles
         },
