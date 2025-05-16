@@ -3,6 +3,7 @@
 ~/.config/Code/User/keybindings.json
 ~/.config/dunst/
 ~/.config/fastfetch/
+~/.config/gammastep/
 ~/.config/htop/
 ~/.config/hypr/
 ~/.config/kitty/
