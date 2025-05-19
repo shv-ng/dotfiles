@@ -59,3 +59,7 @@ vim.api.nvim_create_autocmd("VimLeavePre", {
     end
   end,
 })
+
+vim.diagnostic.config({
+  virtual_text = true,
+})
