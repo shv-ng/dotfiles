@@ -1,0 +1,67 @@
+#!/bin/bash
+
+echo "📦 Select the type of change:"
+PS3="Choose a type (number): "
+
+types=(
+    "feat     → new feature"
+    "fix      → bug fix"
+    "chore    → tooling/config change"
+    "docs     → documentation only"
+    "test     → adding or fixing tests"
+    "refactor → code change that isn't a fix or feature"
+    "style    → formatting, missing semi-colons, etc."
+    "perf     → performance improvement"
+    "ci       → CI config or pipeline change"
+    "exit     → cancel"
+)
+
+select opt in "${types[@]}"; do
+    case $opt in
+        "exit     → cancel")
+            echo "❌ Canceled."
+            exit 0
+            ;;
+        *)
+            type=$(echo "$opt" | awk '{print $1}')
+            if [[ -n "$type" ]]; then
+                break
+            fi
+            ;;
+    esac
+    echo "❌ Invalid selection."
+done
+
+echo "📝 What did you do? (short description)"
+read -r message
+
+if [[ -z "$message" ]]; then
+    echo "❌ Commit message cannot be empty"
+    exit 1
+fi
+
+echo "🗃️ Stage changes?"
+select stage in "all (git add .)" "interactive (git add -p)" "cancel"; do
+    case $stage in
+        "all (git add .)")
+            git add .
+            break
+            ;;
+        "interactive (git add -p)")
+            git add -p
+            break
+            ;;
+        cancel)
+            echo "❌ Canceled."
+            exit 0
+            ;;
+        *)
+            echo "❌ Invalid option"
+            ;;
+    esac
+done
+
+commit_msg="$type: $message"
+git commit -m "$commit_msg"
+
+echo "✅ Committed: $commit_msg"

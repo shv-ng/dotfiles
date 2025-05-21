@@ -34,9 +34,13 @@ return {
         function(server_name)
           local ok, opts = pcall(require, "lsp.servers." .. server_name)
           if ok then
-            lspconfig[server_name].setup(opts)
+            require("lspconfig")[server_name].setup(opts)
+
+            print("Setting up: " .. server_name)
           end
-          lspconfig[server_name].setup({})
+          if not ok then
+            require("lspconfig")[server_name].setup({})
+          end
         end
       },
     })

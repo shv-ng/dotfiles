@@ -37,7 +37,7 @@ return {
   on_attach = function(client, bufnr)
     -- Enable inlay hints (Neovim 0.10+)
     if client.server_capabilities.inlayHintProvider then
-      vim.lsp.inlay_hint(bufnr, true)
+      vim.lsp.inlay_hint.enable(true)
     end
 
     -- Workaround for gopls semanticTokens
