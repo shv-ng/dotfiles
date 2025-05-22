@@ -7,6 +7,7 @@
 ~/.config/htop/
 ~/.config/hypr/
 ~/.config/kitty/
+~/.config/lazygit/
 ~/.config/nvim/
 ~/.config/rofi/
 ~/.config/starship/
