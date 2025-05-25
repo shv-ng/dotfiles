@@ -14,13 +14,13 @@ with open("files_to_push.txt") as f:
         dist = Path(dist_str).expanduser()  # Expand the destination path
         if src.is_dir():
             # Copy the entire directory to the destination
-            shutil.copytree(src, dist, dirs_exist_ok=True)
+            _ = shutil.copytree(src, dist, dirs_exist_ok=True)
         else:
             # Ensure the parent directory of the file exists
             parent = Path("/".join(dist_str.split("/")[:-1])).expanduser()
             parent.mkdir(exist_ok=True, parents=True)
             # Copy the file to the destination
             try:
-                shutil.copy2(src, parent)
+                _ = shutil.copy2(src, parent)
             except FileNotFoundError:
                 continue
