@@ -33,7 +33,7 @@ return {
       },
       view_options = {
         is_always_hidden = function(name, _)
-          local m = name:match('^..$')
+          local m = name:match('^%.%.$')
           return m ~= nil
         end
       },
