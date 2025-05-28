@@ -7,15 +7,10 @@ fcd-widget(){
       --exclude node_modules \
       | fzf)"
 }
-fcda-widget(){
-  cd "$(fd --full-path -H --type d | fzf)"
-}
 
 zle -N fcd-widget
-zle -N fcda-widget
 
 bindkey "^f" fcd-widget
 bindkey -s "^p" 'tmux-sessionizer^M'
-bindkey "^[^f" fcda-widget
 
 bindkey '^@' forward-word
