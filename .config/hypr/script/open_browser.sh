@@ -10,13 +10,14 @@ if [ "$current_ws" -eq 2 ]; then
     fi
 fi
 
-website=$(echo -e 'Normal\nWhatsapp\nYouTube\nLinkedIn\nGitHub\nYoutube Music\nGMail\nGoogle Docs\nGoogle Sheets\nTelegram' | fzf --layout reverse --border )
+website=$(echo -e 'Normal\nWhatsapp\nYouTube\nLinkedIn\nGitHub\nGitHub Repo\nYoutube Music\nGMail\nGoogle Docs\nGoogle Sheets\nTelegram' | fzf --layout reverse --border )
 
 case "$website" in
     "Whatsapp") url="https://web.whatsapp.com" ;;
     "YouTube") url="https://youtube.com" ;;
     "LinkedIn") url="https://linkedin.com" ;;
     "GitHub") url="https://github.com/ShivangSrivastava" ;;
+    "GitHub Repo") url="https://github.com/ShivangSrivastava?tab=repositories" ;;
     "Youtube Music") url="https://music.youtube.com" ;;
     "GMail") url="https://mail.google.com" ;;
     "Google Docs") url="https://docs.google.com/document/u/0/" ;;
