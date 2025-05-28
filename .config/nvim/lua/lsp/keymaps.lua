@@ -13,6 +13,8 @@ function M.keymaps(event)
   vim.keymap.set('n', '<F2>', '<cmd>lua vim.lsp.buf.rename()<cr>', opts)
   vim.keymap.set({ 'n', 'x' }, '<F3>', smart_format, opts)
   vim.keymap.set('n', '<F4>', "<cmd>FzfLua lsp_code_actions<CR>", opts)
+  vim.keymap.set('n', '<leader>o',
+    ":lua vim.lsp.buf.code_action{context={only={\"source.organizeImports\"}},apply=true}<CR>", opts)
 end
 
 return M
