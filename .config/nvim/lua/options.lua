@@ -19,14 +19,10 @@ vim.api.nvim_create_autocmd("BufWritePre", {
   group = vim.api.nvim_create_augroup("FormatOnSave", { clear = true }),
   pattern = "*",
   callback = function()
-    vim.lsp.buf.format()
+    vim.lsp.buf.format({ async = false })
   end,
 })
 
-
-vim.cmd([[
-command! FormatAll lua vim.lsp.buf.format({async = true})
-]])
 
 vim.lsp.handlers["textDocument/inlayHint"] = vim.lsp.handlers["textDocument/inlayHint"] or function(err, result, ctx)
   if not err then
