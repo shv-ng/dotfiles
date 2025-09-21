@@ -73,9 +73,14 @@ vim.keymap.set("n", "<leader>gl", ":FzfLua diagnostics_documentCR>", opts)
 vim.keymap.set("n", "<C-p>", ":FzfLua files<CR>", opts)
 vim.keymap.set("n", "<leader>fl", ":FzfLua live_grep<CR>", opts)
 vim.keymap.set("n", "<leader>fz", ":FzfLua<CR>", opts)
-vim.keymap.set("n", "<F11>", ":FzfLua buffers<CR>", opts)
+vim.keymap.set("n", "<F11>", ":FzfLua oldfiles<CR>", opts)
 vim.keymap.set({ "n", "i" }, "<F1>", ":FzfLua helptags<CR>", opts)
-
 
 -- open tmux sessionizer
 vim.keymap.set("n", "<C-f>", ":!tmux new-window tmux-sessionizer<CR>")
+
+-- worktree
+local wt = require('utils.worktree')
+
+vim.keymap.set('n', '<C-g>', wt.wt_picker, { desc = 'Pick Git Worktree' })
+vim.keymap.set("n", "<leader>wd", wt.wt_cd, { desc = "CD to buffer's worktree" })

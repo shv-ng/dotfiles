@@ -79,7 +79,6 @@ vim.diagnostic.config({
   },
 })
 
-
 -- local session_file = "Session.vim"
 --
 --
@@ -100,3 +99,4 @@ vim.diagnostic.config({
 --     end
 --   end,
 -- })
+--
