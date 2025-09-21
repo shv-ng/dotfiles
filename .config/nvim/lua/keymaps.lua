@@ -16,12 +16,6 @@ vim.keymap.set({ "n", "v" }, "<leader>P", "\"+P")
 vim.keymap.set({ "n", "v" }, "j", "gj", { noremap = true, silent = true })
 vim.keymap.set({ "n", "v" }, "k", "gk", { noremap = true, silent = true })
 
--- FzfLua shortcuts
-vim.keymap.set("n", "<C-p>", ":FzfLua files<CR>", { silent = true, desc = "Fuzzy search files" })
-vim.keymap.set("n", "<leader><leader>", ":FzfLua live_grep<CR>", { silent = true }) -- Live grep
-vim.keymap.set("n", "<leader>fl", ":FzfLua<CR>", { silent = true })                 -- Open FzfLua
-vim.keymap.set("n", "<F11>", ":FzfLua buffers<CR>", { silent = true })              -- Search buffers
-
 -- Move selected lines up/down in visual mode
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
@@ -61,68 +55,27 @@ end, { desc = "Insert Go error check" })
 
 local smart_format = require("lsp.format").smart_format
 local opts = { silent = true }
-vim.keymap.set('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>', opts)
-vim.keymap.set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>', opts)
-vim.keymap.set('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>', opts)
-vim.keymap.set('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<cr>', opts)
-vim.keymap.set('n', 'go', '<cmd>lua vim.lsp.buf.type_definition()<cr>', opts)
-vim.keymap.set('n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>', opts)
-vim.keymap.set('n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<cr>', opts)
-vim.keymap.set('n', '<F2>', '<cmd>lua vim.lsp.buf.rename()<cr>', opts)
-vim.keymap.set({ 'n', 'x' }, '<F3>', smart_format, opts)
-vim.keymap.set('n', '<F4>', "<cmd>FzfLua lsp_code_actions<CR>", opts)
-vim.keymap.set('n', '<leader>o', function()
-  vim.lsp.buf.code_action {
-    context = { only = { "source.organizeImports" } },
-    apply = true,
-  }
-end, opts)
--- Diagnostic navigation
-vim.keymap.set('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<cr>', opts)
-vim.keymap.set('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<cr>', opts)
+
+vim.keymap.set("n", "gd", ":FzfLua lsp_definitions<CR>", opts)
+vim.keymap.set("n", "gD", ":FzfLua lsp_declarations<CR>", opts)
+vim.keymap.set("n", "gi", ":FzfLua lsp_implementations<CR>", opts)
+vim.keymap.set("n", "gr", ":FzfLua lsp_references<CR>", opts)
+
+vim.keymap.set('n', 'K', ':lua vim.lsp.buf.hover()<cr>', opts)
+vim.keymap.set('n', '<C-k>', ':lua vim.lsp.buf.signature_help()<cr>', opts)
+vim.keymap.set('n', '<F2>', ':lua vim.lsp.buf.rename()<cr>', opts)
+vim.keymap.set('n', '<F4>', ":FzfLua lsp_code_actions<CR>", opts)
+vim.keymap.set('n', '<F3>', smart_format, opts)
+
+vim.keymap.set("n", "<leader>gl", ":FzfLua diagnostics_documentCR>", opts)
+
+-- FzfLua shortcuts
+vim.keymap.set("n", "<C-p>", ":FzfLua files<CR>", opts)
+vim.keymap.set("n", "<leader>fl", ":FzfLua live_grep<CR>", opts)
+vim.keymap.set("n", "<leader>fz", ":FzfLua<CR>", opts)
+vim.keymap.set("n", "<F11>", ":FzfLua buffers<CR>", opts)
+vim.keymap.set({ "n", "i" }, "<F1>", ":FzfLua helptags<CR>", opts)
+
 
 -- open tmux sessionizer
 vim.keymap.set("n", "<C-f>", ":!tmux new-window tmux-sessionizer<CR>")
-
--- Git worktree
-vim.keymap.set("n", "<leader>gw", function()
-  require("fzf-lua").fzf_exec(
-    require("git-worktree").get_worktree_list(),
-    {
-      prompt = "Git Worktrees > ",
-      previewer = false,
-      actions = {
-        ["default"] = function(selected)
-          local worktree = selected[1]
-          require("git-worktree").switch_worktree(worktree)
-        end,
-      },
-    }
-  )
-end, { desc = "Switch git worktree" })
-
-vim.keymap.set("n", "<leader>gwc", function()
-  vim.ui.input({ prompt = "Worktree path: " }, function(path)
-    if not path then return end
-    vim.ui.input({ prompt = "Branch name: " }, function(branch)
-      if not branch then return end
-      require("git-worktree").create_worktree(path, branch)
-    end)
-  end)
-end, { desc = "Create git worktree" })
-
-vim.keymap.set("n", "<leader>gwd", function()
-  require("fzf-lua").fzf_exec(
-    require("git-worktree").get_worktree_list(),
-    {
-      prompt = "Delete Worktree > ",
-      previewer = false,
-      actions = {
-        ["default"] = function(selected)
-          local worktree = selected[1]
-          require("git-worktree").delete_worktree(worktree, true)
-        end,
-      },
-    }
-  )
-end, { desc = "Delete git worktree" })

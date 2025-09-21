@@ -41,6 +41,13 @@ vim.api.nvim_create_autocmd("BufWritePre", {
   pattern = "*",
   callback = function()
     vim.lsp.buf.format({ async = false })
+    vim.lsp.buf.code_action {
+      context = {
+        diagnostics = {},
+        only = { "source.organizeImports" },
+      },
+      apply = true,
+    }
   end,
 })
 
@@ -54,6 +61,23 @@ end
 if vim.lsp.inlay_hint then
   vim.lsp.inlay_hint.enable(true, { 0 })
 end
+
+vim.diagnostic.config({
+  virtual_text = {
+    severity = { min = vim.diagnostic.severity.WARN },
+    source = "if_many",
+  },
+  signs = true,
+  underline = true,
+  update_in_insert = false,
+  severity_sort = true,
+  float = {
+    border = "rounded",
+    source = true,
+    header = "",
+    prefix = "",
+  },
+})
 
 
 -- local session_file = "Session.vim"
@@ -76,20 +100,3 @@ end
 --     end
 --   end,
 -- })
-
-vim.diagnostic.config({
-  virtual_text = {
-    severity = { min = vim.diagnostic.severity.WARN },
-    source = "if_many",
-  },
-  signs = true,
-  underline = true,
-  update_in_insert = false,
-  severity_sort = true,
-  float = {
-    border = "rounded",
-    source = true,
-    header = "",
-    prefix = "",
-  },
-})

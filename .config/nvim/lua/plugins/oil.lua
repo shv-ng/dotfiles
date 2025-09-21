@@ -7,16 +7,6 @@ return {
     oil.setup({
       keymaps = {
         ["<C-v>"] = { "actions.preview", opts = { split = "botright" } },
-        ["<C-g>"] = function()
-          fzf.fzf_exec("fd --type d --hidden --follow --exclude .git", {
-            prompt = "Find Directory: ",
-            actions = {
-              ["default"] = function(selected)
-                oil.open(selected[1])
-              end
-            }
-          })
-        end,
         ["<C-p>"] = function()
           fzf.fzf_exec("fd --type f --hidden --follow --exclude .git", {
             prompt = "Find File: ",

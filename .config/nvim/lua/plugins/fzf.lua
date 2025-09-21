@@ -1,9 +1,9 @@
 return {
   "ibhagwan/fzf-lua",
-  dependencies = { "nvim-tree/nvim-web-devicons" },
   config = function()
     require('fzf-lua').setup({
       winopts = {
+        fullscreen = true,
         preview = {
           default = "bat"
         }
@@ -19,5 +19,6 @@ return {
     })
     -- Register UI select to fix warning
     require('fzf-lua').register_ui_select()
+    require('plugins.fzf.custom')
   end
 }
