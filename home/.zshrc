@@ -133,11 +133,11 @@ alias grep='grep --color=auto'
 # ─── Environment Variables ─────────────────────────────────────────────
 export GOPATH="$HOME/go"
 export TMUX_CONF="$HOME/.config/tmux/tmux.conf"
-export PERSONAL="$HOME/personal"
 export PATH="$HOME/.local/share/nvim/mason/bin:$PATH:$MY_BIN"
 export PATH="$PATH:$HOME/.local/bin"
 export PATH="$PATH:/usr/local/go/bin"
 export PATH="$PATH:$GOPATH/bin"
+export PATH="$PATH:$HOME/.cargo/bin"
 export EDITOR="nvim"
 export PAGER="less"
 export LESS="-R"                           # raw control characters

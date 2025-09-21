@@ -81,13 +81,48 @@ end, opts)
 vim.keymap.set('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<cr>', opts)
 vim.keymap.set('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<cr>', opts)
 
-
--- Harpoon keymaps (add these after your existing keymaps)
--- Quick access to first 4 harpoon files with leader + number
-vim.keymap.set("n", "<leader>q", function() require("harpoon"):list():select(1) end, { desc = "Harpoon file 1" })
-vim.keymap.set("n", "<leader>w", function() require("harpoon"):list():select(2) end, { desc = "Harpoon file 2" })
-vim.keymap.set("n", "<leader>e", function() require("harpoon"):list():select(3) end, { desc = "Harpoon file 3" })
-vim.keymap.set("n", "<leader>r", function() require("harpoon"):list():select(4) end, { desc = "Harpoon file 4" })
-
 -- open tmux sessionizer
 vim.keymap.set("n", "<C-f>", ":!tmux new-window tmux-sessionizer<CR>")
+
+-- Git worktree
+vim.keymap.set("n", "<leader>gw", function()
+  require("fzf-lua").fzf_exec(
+    require("git-worktree").get_worktree_list(),
+    {
+      prompt = "Git Worktrees > ",
+      previewer = false,
+      actions = {
+        ["default"] = function(selected)
+          local worktree = selected[1]
+          require("git-worktree").switch_worktree(worktree)
+        end,
+      },
+    }
+  )
+end, { desc = "Switch git worktree" })
+
+vim.keymap.set("n", "<leader>gwc", function()
+  vim.ui.input({ prompt = "Worktree path: " }, function(path)
+    if not path then return end
+    vim.ui.input({ prompt = "Branch name: " }, function(branch)
+      if not branch then return end
+      require("git-worktree").create_worktree(path, branch)
+    end)
+  end)
+end, { desc = "Create git worktree" })
+
+vim.keymap.set("n", "<leader>gwd", function()
+  require("fzf-lua").fzf_exec(
+    require("git-worktree").get_worktree_list(),
+    {
+      prompt = "Delete Worktree > ",
+      previewer = false,
+      actions = {
+        ["default"] = function(selected)
+          local worktree = selected[1]
+          require("git-worktree").delete_worktree(worktree, true)
+        end,
+      },
+    }
+  )
+end, { desc = "Delete git worktree" })

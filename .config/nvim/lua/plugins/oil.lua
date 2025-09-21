@@ -27,9 +27,6 @@ return {
             }
           })
         end,
-        ["<leader>ff"] = function()
-          fzf.files({ cwd = oil.get_current_dir() })
-        end,
       },
       view_options = {
         is_always_hidden = function(name, _)
