@@ -41,13 +41,16 @@ vim.api.nvim_create_autocmd("BufWritePre", {
   pattern = "*",
   callback = function()
     vim.lsp.buf.format({ async = false })
-    vim.lsp.buf.code_action {
-      context = {
-        diagnostics = {},
-        only = { "source.organizeImports" },
-      },
-      apply = true,
-    }
+    -- only for go
+    if vim.bo.filetype == "go" then
+      vim.lsp.buf.code_action {
+        context = {
+          diagnostics = {},
+          only = { "source.organizeImports" },
+        },
+        apply = true,
+      }
+    end
   end,
 })
 

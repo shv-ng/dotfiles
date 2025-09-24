@@ -12,8 +12,6 @@ return {
         "isort",
         "ruff",
         "shellcheck",
-
-        "basedpyright",
         "bash-language-server",
         "emmet-language-server",
         "gopls",

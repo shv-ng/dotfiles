@@ -30,6 +30,9 @@ vim.keymap.set("n", "N", "Nzzzv")
 vim.keymap.set("n", "<leader>x", function()
   vim.cmd("!chmod +x " .. vim.fn.expand("%"))
 end)
+vim.keymap.set("n", "<leader>so", ":source %<CR>")
+vim.keymap.set("n", "<leader>lf", ":luafile %<CR>")
+
 
 -- change filetype to htmldjango
 vim.keymap.set("n", "<leader>dj", ":set filetype=htmldjango<CR>")
@@ -67,13 +70,13 @@ vim.keymap.set('n', '<F2>', ':lua vim.lsp.buf.rename()<cr>', opts)
 vim.keymap.set('n', '<F4>', ":FzfLua lsp_code_actions<CR>", opts)
 vim.keymap.set('n', '<F3>', smart_format, opts)
 
-vim.keymap.set("n", "<leader>gl", ":FzfLua diagnostics_documentCR>", opts)
+vim.keymap.set("n", "<leader>gl", ":FzfLua diagnostics_document<CR>", opts)
 
 -- FzfLua shortcuts
 vim.keymap.set("n", "<C-p>", ":FzfLua files<CR>", opts)
 vim.keymap.set("n", "<leader>fl", ":FzfLua live_grep<CR>", opts)
 vim.keymap.set("n", "<leader>fz", ":FzfLua<CR>", opts)
-vim.keymap.set("n", "<F11>", ":FzfLua oldfiles<CR>", opts)
+vim.keymap.set("n", "<F11>", ":FzfLua buffers<CR>", opts)
 vim.keymap.set({ "n", "i" }, "<F1>", ":FzfLua helptags<CR>", opts)
 
 -- open tmux sessionizer
@@ -84,3 +87,5 @@ local wt = require('utils.worktree')
 
 vim.keymap.set('n', '<C-g>', wt.wt_picker, { desc = 'Pick Git Worktree' })
 vim.keymap.set("n", "<leader>wd", wt.wt_cd, { desc = "CD to buffer's worktree" })
+vim.keymap.set("n", "<leader>wf", ":!git fetch origin '+refs/heads/*:refs/remotes/origin/*'<CR>",
+  { desc = "Sync worktrees" })

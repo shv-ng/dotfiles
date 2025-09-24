@@ -29,8 +29,13 @@ function M.wt_picker()
     prompt = 'Worktrees> ',
     actions = {
       ['default'] = function(selected)
-        vim.api.nvim_set_current_dir(selected[1])
-        vim.cmd("Oil" .. selected[1])
+        local target_path = selected[1]
+
+        require('fzf-lua').setup({
+          cwd = target_path
+        })
+
+        vim.cmd("Oil" .. target_path)
       end
     }
   })

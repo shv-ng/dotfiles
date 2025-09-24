@@ -5,19 +5,16 @@ return {
       files = {
         formatter = "path.filename_first",
       },
-      oldfiles = {
-        formatter = "path.filename_first",
-      },
       winopts = {
         fullscreen = true,
-        border = "none", -- Remove window border
+        border = "none",   -- Remove window border
         preview = {
           border = "none", -- Remove preview border
           default = "bat"
         }
       },
       fzf_opts = {
-        ['--no-border'] = '', -- Remove fzf's internal border
+        ['--no-border'] = '',    -- Remove fzf's internal border
         ['--no-separator'] = '', -- Remove separator line
       },
       grep = {

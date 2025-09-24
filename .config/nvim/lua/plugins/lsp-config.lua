@@ -20,12 +20,16 @@ return {
 
     require("mason-lspconfig").setup({
       ensure_installed = {
-        "lua_ls", 
-        "basedpyright",  -- Main Python LSP
-        "ruff",          -- Fast linting
+        "lua_ls",
+        "ruff", -- Fast linting
         "emmet_language_server",
-        "gopls", 
-        "bashls"
+        "gopls",
+        "bashls",
+        "jedi_language_server",
+        -- "rust_analyzer",
+        -- "tsserver",
+        "bashls",
+
       },
       automatic_installation = true,
       handlers = {

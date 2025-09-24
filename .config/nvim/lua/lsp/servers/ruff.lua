@@ -6,7 +6,7 @@ return {
         enable = true,
         select = {
           "E",   -- pycodestyle errors
-          "W",   -- pycodestyle warnings  
+          "W",   -- pycodestyle warnings
           "F",   -- pyflakes
           "I",   -- isort
           "B",   -- flake8-bugbear
@@ -23,14 +23,13 @@ return {
         },
       },
       format = {
-        enable = false, -- We use null-ls for formatting
+        enable = true, -- We use null-ls for formatting
       },
     },
   },
   on_attach = function(client, _)
-    -- Disable hover and formatting in favor of basedpyright and null-ls
-    client.server_capabilities.hoverProvider = false
-    client.server_capabilities.documentFormattingProvider = false
-    client.server_capabilities.documentRangeFormattingProvider = false
+    client.server_capabilities.hoverProvider = true
+    client.server_capabilities.documentFormattingProvider = true
+    client.server_capabilities.documentRangeFormattingProvider = true
   end,
 }

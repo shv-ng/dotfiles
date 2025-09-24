@@ -2,7 +2,7 @@ return {
   {
     "monkoose/neocodeium",
     event = "VeryLazy",
-    enabled = true,
+    enabled = false,
     config = function()
       local neocodeium = require("neocodeium")
       neocodeium.setup()
