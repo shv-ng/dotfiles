@@ -1,0 +1,6 @@
+env
+env.fish
+ruff
+tinymist
+uv
+uvx
