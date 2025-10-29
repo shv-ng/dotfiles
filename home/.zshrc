@@ -14,16 +14,13 @@ source "${ZINIT_HOME}/zinit.zsh"
 zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-autosuggestions
 zinit light zsh-users/zsh-completions
+zinit light unixorn/fzf-zsh-plugin
 
 # Load completions
 autoload -U compinit && compinit
 
 # Keybindings
 bindkey '^ ' autosuggest-accept
-bindkey '^R' history-incremental-search-backward
-bindkey '^T' history-incremental-search-forward
-
-bindkey -s "^f" 'tmux-sessionizer\n'
 
 # Vim mode configuration
 bindkey -v
@@ -97,8 +94,8 @@ precmd() {
 PROMPT='%F{magenta}╭─%f %F{cyan}%n%f %F{white}at%f %F{blue}%m%f %F{white}in%f %F{yellow}%2~%f${vcs_info_msg_0_}
 %F{magenta}╰─%f ${vim_mode} '
 
-# Optional: Right prompt with time and exit status
-RPROMPT='%(?..%F{red}✘ %?%f) %F{244}%T%f'
+# # Optional: Right prompt with time and exit status
+# RPROMPT='%(?..%F{red}✘ %?%f) %F{244}%T%f'
 
 # ─── Custom Functions ──────────────────────────────────────────────────
 
@@ -124,11 +121,12 @@ zstyle ':completion:*' cache-path ~/.zsh/cache
 
 # ─── Aliases ────────────────────────────────────────────────────────────
 alias todo='nvim /home/shivang/todo.md'
-alias ls='ls --color=auto'
+alias ls='ls --color=always'
 alias grep='grep --color=auto'
+alias vim="nvim"
 
 # Shell integrations
-# eval "$(fzf --zsh)"
+eval "$(fzf --zsh)"
 
 # ─── Environment Variables ─────────────────────────────────────────────
 export GOPATH="$HOME/go"
@@ -142,7 +140,7 @@ export EDITOR="nvim"
 export PAGER="less"
 export LESS="-R"                           # raw control characters
 export LESSHISTFILE=-                      # disable less history
-#
+
 # XDG Base Directory Specification
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
@@ -150,3 +148,8 @@ export XDG_CACHE_HOME="$HOME/.cache"
 
 # disable beeps
 setopt NO_BEEP
+
+
+
+
+. "$HOME/.local/share/../bin/env"
