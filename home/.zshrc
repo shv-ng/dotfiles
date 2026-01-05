@@ -1,3 +1,4 @@
+
 # Set directory where we want to store zinit and plugins
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 
@@ -153,3 +154,6 @@ setopt NO_BEEP
 
 
 . "$HOME/.local/share/../bin/env"
+#
+# Auto start hyprland on tty1
+[ $(who am i | cut -d' ' -f3) == 'tty1' ] && Hyprland

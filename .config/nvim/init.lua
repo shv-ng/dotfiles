@@ -2,7 +2,7 @@ vim.o.number         = true
 vim.o.relativenumber = true
 vim.o.wrap           = false
 vim.o.signcolumn     = "yes"
-vim.o.colorcolumn    = "80"
+vim.o.colorcolumn    = "100"
 vim.o.swapfile       = false
 vim.o.termguicolors  = true
 vim.o.winborder      = "rounded"
@@ -16,11 +16,9 @@ vim.o.expandtab      = true
 vim.o.tabstop        = 2
 vim.o.softtabstop    = 2
 vim.o.shiftwidth     = 2
-
 vim.g.mapleader      = " "
 
 local map            = vim.keymap.set
-
 map("n", "<leader>o", ":update<CR>:source<CR>")
 map("n", "<leader>w", ":write<CR>")
 map("n", "<leader>q", ":quit<CR>")
@@ -31,10 +29,8 @@ map({ "n", "v" }, "<leader>p", "\"+p")
 map({ "n", "v" }, "<leader>P", "\"+P")
 
 map({ "n", "v" }, "<leader>s", ":e #<CR>")
-map({ "n", "v" }, "<leader>1", ":e #2<CR>")
-map({ "n", "v" }, "<leader>2", ":e #3<CR>")
-map({ "n", "v" }, "<leader>3", ":e #4<CR>")
-map("n", "<leader>n", ":noh<CR>")
+map("n", "<leader>m", ":noh<CR>")
+map("n", "<leader>r", ":silent !tmux split-pane -h python3 %; read<CR>")
 
 map("n", "<C-h>", ":wincmd h<CR>")
 map("n", "<C-j>", ":wincmd j<CR>")
@@ -67,12 +63,10 @@ vim.pack.add({
   { src = "https://github.com/MeanderingProgrammer/render-markdown.nvim" },
   { src = "https://github.com/saghen/blink.cmp" },
   { src = "https://github.com/chomosuke/typst-preview.nvim" },
+  { src = "https://github.com/monkoose/neocodeium" },
 })
 
-require "oil".setup({
-  skip_confirm_for_simple_edits = true,
-})
-require "fzf-lua".setup()
+
 require "nvim-treesitter.configs".setup({
   ensure_installed = { "lua", "go" },
   sync_install = true,
@@ -82,11 +76,18 @@ require "nvim-treesitter.configs".setup({
   indent = { enable = true },
   modules = {}
 })
+
 require('blink.cmp').setup({
   keymap = { preset = 'default' },
   appearance = {
     use_nvim_cmp_as_default = true,
     nerd_font_variant = 'mono'
+  },
+  completion = {
+    documentation = {
+      auto_show = true,
+      auto_show_delay_ms = 200,
+    },
   },
   sources = {
     default = { 'lsp', 'path', 'buffer' },
@@ -99,21 +100,29 @@ require('blink.cmp').setup({
     show_documentation = true
   }
 })
+
 require("typst-preview").setup()
 
+require "fzf-lua".setup()
 map("n", "<leader>e", ":FzfLua files<CR>")
 map("n", "<leader>fb", ":FzfLua buffers<CR>")
 map("n", "<leader>fl", ":FzfLua live_grep<CR>")
 map("n", "<leader>fz", ":FzfLua<CR>")
 map({ "n", "i" }, "<F1>", ":FzfLua helptags<CR>")
 
+require "oil".setup({ skip_confirm_for_simple_edits = true })
 map("n", "-", ":Oil<CR>")
 
 map("n", "<leader>lf", vim.lsp.buf.format)
 map("n", "gd", vim.lsp.buf.definition)
 map("i", "<C-k>", vim.lsp.buf.signature_help)
 
-vim.lsp.enable({ "lua_ls", "gopls", "tinymist", "ruff" })
+require("neocodeium").setup({ enable = false })
+local neocodeium = require("neocodeium")
+map("i", "<A-f>", neocodeium.accept)
+map("n", "<leader>nt", ":NeoCodeium toggle<cr>")
+
+vim.lsp.enable({ "lua_ls", "gopls", "tinymist", "ruff", "yamlls" })
 
 vim.lsp.config("lua_ls", {
   settings = {
@@ -137,6 +146,13 @@ vim.api.nvim_create_autocmd("BufWritePre", {
   group = vim.api.nvim_create_augroup("FormatOnSave", { clear = true }),
   pattern = "*",
   callback = function()
+    -- Skip formatting for Java
+    if vim.bo.filetype == "java" then
+      return
+    end
+    if vim.bo.filetype == "python" then
+      return
+    end
     vim.lsp.buf.format({ async = true })
     -- only for go
     if vim.bo.filetype == "go" then
@@ -151,11 +167,12 @@ vim.api.nvim_create_autocmd("BufWritePre", {
   end,
 })
 
-vim.lsp.handlers["textDocument/inlayHint"] = vim.lsp.handlers["textDocument/inlayHint"] or function(err, result, ctx)
-  if not err then
-    vim.lsp.util.on_inlay_hint(ctx.bufnr, result)
-  end
-end
+vim.lsp.handlers["textDocument/inlayHint"] = vim.lsp.handlers["textDocument/inlayHint"]
+    or function(err, result, ctx)
+      if not err then
+        vim.lsp.util.on_inlay_hint(ctx.bufnr, result)
+      end
+    end
 
 if vim.lsp.inlay_hint then
   vim.lsp.inlay_hint.enable(true, { 0 })
@@ -164,10 +181,13 @@ end
 vim.cmd("colorscheme tokyonight")
 
 vim.cmd [[
-    highlight Normal      ctermbg=NONE     guibg=NONE
-    highlight NonText     ctermbg=NONE     guibg=NONE
-    highlight SignColumn  ctermbg=NONE     guibg=NONE
-    highlight EndOfBuffer ctermbg=NONE     guibg=NONE
-    highlight statusline  ctermbg=NONE     guibg=NONE
-    highlight ColorColumn ctermbg=darkgray guibg=#2e2e2e
+    highlight Normal       ctermbg=NONE     guibg=NONE
+    highlight NonText      ctermbg=NONE     guibg=NONE
+    highlight SignColumn   ctermbg=NONE     guibg=NONE
+    highlight EndOfBuffer  ctermbg=NONE     guibg=NONE
+    highlight statusline   ctermbg=NONE     guibg=NONE
+    highlight ColorColumn  ctermbg=darkgray guibg=#2e2e2e
+    highlight NormalNC     ctermbg=NONE     guibg=NONE
+    highlight SignColumnNC ctermbg=NONE     guibg=NONE
+	  highlight Folded       guibg=NONE       guifg=NONE
 ]]

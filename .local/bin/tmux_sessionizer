@@ -4,7 +4,7 @@ if [[ $# -eq 1 ]]; then
   selected=$1
 else
   selected=$(
-    fd . ~/ ~/work ~/personal \
+    fd . ~/ ~/work ~/personal ~/open-source \
       --type d --min-depth 1 --max-depth 1 -L -0 \
       | xargs -0 stat --format '%Y %n' \
       | sort -nr \

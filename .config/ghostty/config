@@ -6,13 +6,13 @@ window-padding-y = 0
 
 # Font settings (adjust as needed)
 font-family = "JetBrains Mono"
-font-size = 16
+font-size = 14
 
 # Uncomment the next line if colors still appear too bright
 term = xterm-256color
 
 confirm-close-surface = false
-# background-opacity = 0.0
+#background-opacity = 0.5
 
 keybind = alt+one=unbind
 keybind = alt+two=unbind
