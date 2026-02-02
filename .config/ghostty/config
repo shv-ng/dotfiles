@@ -1,4 +1,4 @@
-theme = tokyonight
+theme = TokyoNight
 
 # Window settings - remove padding for full coverage
 window-padding-x = 0

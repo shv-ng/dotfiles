@@ -16,6 +16,7 @@ vim.o.expandtab      = true
 vim.o.tabstop        = 2
 vim.o.softtabstop    = 2
 vim.o.shiftwidth     = 2
+vim.o.exrc           = true
 vim.g.mapleader      = " "
 
 local map            = vim.keymap.set
@@ -29,8 +30,7 @@ map({ "n", "v" }, "<leader>p", "\"+p")
 map({ "n", "v" }, "<leader>P", "\"+P")
 
 map({ "n", "v" }, "<leader>s", ":e #<CR>")
-map("n", "<leader>m", ":noh<CR>")
-map("n", "<leader>r", ":silent !tmux split-pane -h python3 %; read<CR>")
+map("n", "<leader>n", ":noh<CR>")
 
 map("n", "<C-h>", ":wincmd h<CR>")
 map("n", "<C-j>", ":wincmd j<CR>")
@@ -117,12 +117,14 @@ map("n", "<leader>lf", vim.lsp.buf.format)
 map("n", "gd", vim.lsp.buf.definition)
 map("i", "<C-k>", vim.lsp.buf.signature_help)
 
-require("neocodeium").setup({ enable = false })
+require("neocodeium").setup({ enabled = false })
 local neocodeium = require("neocodeium")
 map("i", "<A-f>", neocodeium.accept)
-map("n", "<leader>nt", ":NeoCodeium toggle<cr>")
+map("n", "<leader>c", ":NeoCodeium toggle<cr>")
 
-vim.lsp.enable({ "lua_ls", "gopls", "tinymist", "ruff", "yamlls" })
+vim.lsp.enable({
+  "lua_ls", "gopls", "tinymist", "ruff", "yamlls", "basedpyright", "ts_ls", ""
+})
 
 vim.lsp.config("lua_ls", {
   settings = {
@@ -153,7 +155,7 @@ vim.api.nvim_create_autocmd("BufWritePre", {
     if vim.bo.filetype == "python" then
       return
     end
-    vim.lsp.buf.format({ async = true })
+    vim.lsp.buf.format({ async = false })
     -- only for go
     if vim.bo.filetype == "go" then
       vim.lsp.buf.code_action {
