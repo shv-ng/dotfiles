@@ -31,8 +31,10 @@ fi
 
 if [[ -z $TMUX ]]; then
   tmux attach -t $selected_name
+  tmux -c vim
 else
   tmux switch-client -t $selected_name
 fi
+
 
 

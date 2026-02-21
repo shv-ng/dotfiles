@@ -19,7 +19,8 @@ vim.o.shiftwidth     = 2
 vim.o.exrc           = true
 vim.g.mapleader      = " "
 
-local map            = vim.keymap.set
+
+local map = vim.keymap.set
 map("n", "<leader>o", ":update<CR>:source<CR>")
 map("n", "<leader>w", ":write<CR>")
 map("n", "<leader>q", ":quit<CR>")
@@ -123,8 +124,9 @@ map("i", "<A-f>", neocodeium.accept)
 map("n", "<leader>c", ":NeoCodeium toggle<cr>")
 
 vim.lsp.enable({
-  "lua_ls", "gopls", "tinymist", "ruff", "yamlls", "basedpyright", "ts_ls", ""
+  "lua_ls", "gopls", "tinymist", "ruff", "yamlls", "basedpyright", "ts_ls", "svelte-language-server"
 })
+
 
 vim.lsp.config("lua_ls", {
   settings = {
@@ -135,11 +137,21 @@ vim.lsp.config("lua_ls", {
     }
   }
 })
+
 vim.lsp.config("tinymist", {
   settings = {
     formatterMode = "typstyle",
     exportPdf = "onType",
     semanticTokens = "disable"
+  }
+})
+
+vim.lsp.config("basedpyright", {
+  analysis = {
+    diagnosticMode = "openFilesOnly",
+    inlayHints = {
+      callArgumentNames = false
+    }
   }
 })
 

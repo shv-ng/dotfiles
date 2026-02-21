@@ -156,4 +156,11 @@ setopt NO_BEEP
 . "$HOME/.local/share/../bin/env"
 #
 # Auto start hyprland on tty1
-[ $(who am i | cut -d' ' -f3) == 'tty1' ] && Hyprland
+[ $(who am i | cut -d' ' -f3) == 'tty1' ] && start-hyprland
+
+# bun completions
+[ -s "/home/shivang/.bun/_bun" ] && source "/home/shivang/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
