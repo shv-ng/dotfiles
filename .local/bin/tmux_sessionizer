@@ -3,12 +3,9 @@
 if [[ $# -eq 1 ]]; then
   selected=$1
 else
+  fd . $HOME/ $HOME/work $HOME/personal --type d --min-depth 1 --max-depth 1 --print0 | frec sync tmux-sessionizer --null
   selected=$(
-    fd . ~/ ~/work ~/personal ~/open-source \
-      --type d --min-depth 1 --max-depth 1 -L -0 \
-      | xargs -0 stat --format '%Y %n' \
-      | sort -nr \
-      | cut -d' ' -f2- \
+        frec list tmux-sessionizer | awk -F'  ' '{print $1}' \
       | fzf --tiebreak=index --tmux
     )
 fi
@@ -16,6 +13,8 @@ fi
 if [[ -z $selected ]]; then
   exit 0
 fi
+
+frec add tmux-sessionizer $selected
 
 selected_name=$(basename "$selected" | tr . _)
 tmux_running=$(pgrep tmux)
