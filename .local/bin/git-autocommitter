@@ -1,0 +1,58 @@
+#!/bin/bash
+# git-autocommitter
+# Usage: git autocommitter [interval_min] [threshold_lines]
+#        git autocommitter stop
+
+PIDFILE="/tmp/git-autocommitter.pid"
+
+# --- STOP ---
+if [ "$1" = "stop" ]; then
+    if [ -f "$PIDFILE" ]; then
+        kill $(cat "$PIDFILE") 2>/dev/null
+        rm "$PIDFILE"
+        echo "Auto committer stopped."
+    else
+        echo "Not running."
+    fi
+    exit 0
+fi
+
+# --- ALREADY RUNNING? ---
+if [ -f "$PIDFILE" ] && kill -0 $(cat "$PIDFILE") 2>/dev/null; then
+    echo "Already running (PID $(cat $PIDFILE)). Stop it first."
+    exit 1
+fi
+
+# --- CONFIG ---
+INTERVAL_MIN=${1:-30}       # max wait before force commit
+THRESHOLD=${2:-50}          # lines changed to trigger early commit
+CHECK_EVERY=60              # check every 60 seconds
+MAX_SECONDS=$((INTERVAL_MIN * 60))
+ELAPSED=0
+
+echo "Auto committer started"
+echo "  Force commit every : ${INTERVAL_MIN} min"
+echo "  Early commit after : ${THRESHOLD}+ lines changed"
+echo "  PID                : $$"
+echo "Run 'git autocommitter stop' to kill."
+
+echo $$ > "$PIDFILE"
+
+# --- LOOP ---
+while true; do
+    sleep "$CHECK_EVERY"
+    ELAPSED=$((ELAPSED + CHECK_EVERY))
+
+    LINES=$(git diff --shortstat 2>/dev/null | grep -o '[0-9]* insertion' | grep -o '[0-9]*')
+    LINES=${LINES:-0}
+
+    if [ "$LINES" -gt "$THRESHOLD" ]; then
+        echo "[$(date '+%H:%M')] Threshold hit (${LINES} lines) — committing..."
+        git aicommit
+        ELAPSED=0
+    elif [ "$ELAPSED" -ge "$MAX_SECONDS" ]; then
+        echo "[$(date '+%H:%M')] Max interval hit — committing..."
+        git aicommit
+        ELAPSED=0
+    fi
+done
