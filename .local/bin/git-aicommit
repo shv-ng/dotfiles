@@ -25,8 +25,5 @@ $DIFF"
 # Get commit msg from ollama
 MSG=$(gemini -p "$PROMPT" --skip-trust 2>/dev/null | head -n1 | tr -d '\r')
 
-# Check for empty msg
-echo "MSG=[$MSG]"
-
 git add -A
 git commit -m "$MSG"
