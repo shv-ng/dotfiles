@@ -12,7 +12,7 @@ font-size = 14
 term = xterm-256color
 
 confirm-close-surface = false
-#background-opacity = 0.5
+#background-opacity = 0.9
 
 keybind = alt+one=unbind
 keybind = alt+two=unbind

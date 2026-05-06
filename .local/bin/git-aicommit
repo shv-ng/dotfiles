@@ -1,0 +1,32 @@
+#!/bin/bash
+
+# Check for changes
+if git diff --quiet && git diff --cached --quiet; then
+  echo "No changes to commit."
+  exit 0
+fi
+
+# Get diff
+DIFF=$(git diff; git diff --cached)
+
+# Build prompt
+PROMPT="Analyze this git diff and generate ONE commit message.
+
+Rules:
+- Format: <type>(<scope>): <short description>
+- Types: feat, fix, refactor, chore, docs, style, test, perf
+- Scope: affected module/file (auth, api, db, ui, etc.)
+- Description: imperative mood, lowercase, no period, max 72 chars
+- Output ONLY the commit message, nothing else
+
+Diff:
+$DIFF"
+
+# Get commit msg from ollama
+MSG=$(gemini -p "$PROMPT" --skip-trust 2>/dev/null | head -n1 | tr -d '\r')
+
+# Check for empty msg
+echo "MSG=[$MSG]"
+
+git add -A
+git commit -m "$MSG"
