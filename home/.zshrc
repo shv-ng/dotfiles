@@ -150,8 +150,6 @@ export XDG_CACHE_HOME="$HOME/.cache"
 # disable beeps
 setopt NO_BEEP
 
-. "$HOME/.local/share/../bin/env"
-
 # Auto start hyprland on tty1
 [ $(who am i | cut -d' ' -f3) == 'tty1' ] && start-hyprland
 
@@ -163,21 +161,3 @@ export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
 
-# ─── frec ────────────────────────────────────────────────────────────────
-frec_history() {
-  local ns="zsh-history"
-  # sync current cmd into frec before listing
-  frec sync "$ns" < <(fc -ln -10000) &!
- 
-  local selected
-  selected=$(frec list "$ns" | awk -F'  ' '{print $1}' | fzf --tiebreak=index --tmux)
-  
-  [[ -z $selected ]] && zle redisplay && return
-  frec add "$ns" "$selected"
-  BUFFER=$selected
-  CURSOR=${#BUFFER}
-  zle redisplay
-}
-
-zle -N frec_history
-bindkey '^R' frec_history
