@@ -29,6 +29,7 @@ THRESHOLD=${2:-50}          # lines changed to trigger early commit
 CHECK_EVERY=60              # check every 60 seconds
 MAX_SECONDS=$((INTERVAL_MIN * 60))
 ELAPSED=0
+SINCE_PUSH=0
 
 echo "Auto committer started"
 echo "  Force commit every : ${INTERVAL_MIN} min"
@@ -42,17 +43,20 @@ echo $$ > "$PIDFILE"
 while true; do
     sleep "$CHECK_EVERY"
     ELAPSED=$((ELAPSED + CHECK_EVERY))
+    SINCE_PUSH=$((SINCE_PUSH + CHECK_EVERY))
 
     LINES=$(git diff --shortstat 2>/dev/null | grep -o '[0-9]* insertion' | grep -o '[0-9]*')
     LINES=${LINES:-0}
 
-    if [ "$LINES" -gt "$THRESHOLD" ]; then
-        echo "[$(date '+%H:%M')] Threshold hit (${LINES} lines) — committing..."
+    if [ "$LINES" -gt "$THRESHOLD" ] || [ "$ELAPSED" -ge "$MAX_SECONDS" ]; then
+        echo "[$(date '+%H:%M')] Committing..."
         git aicommit
         ELAPSED=0
-    elif [ "$ELAPSED" -ge "$MAX_SECONDS" ]; then
-        echo "[$(date '+%H:%M')] Max interval hit — committing..."
-        git aicommit
-        ELAPSED=0
+    fi
+
+    if [ "$SINCE_PUSH" -ge "$((30 * 60))" ]; then
+        echo "[$(date '+%H:%M')] Pushing..."
+        git push
+        SINCE_PUSH=0
     fi
 done

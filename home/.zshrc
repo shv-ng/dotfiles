@@ -23,6 +23,7 @@ autoload -U compinit && compinit
 
 # Keybindings
 bindkey '^ ' autosuggest-accept
+bindkey '^]' forward-word
 
 # Vim mode configuration
 bindkey -v

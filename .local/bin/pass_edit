@@ -1,0 +1,17 @@
+
+# Helper: Grabs all passwords and pipes them to fzf
+_pass_fzf_select() {
+    # Respect custom password store directories, default to ~/.password-store
+    local prefix="${PASSWORD_STORE_DIR:-$HOME/.password-store}"
+    
+    # Find all .gpg files, strip the path prefix and .gpg suffix, then fuzzy find
+    find "$prefix" -type f -name "*.gpg" 2>/dev/null | \
+        sed "s|^$prefix/||" | \
+        sed 's/\.gpg$//' | \
+        fzf --height=40% --reverse --prompt="$1"
+}
+
+# 3. Fuzzy find and EDIT a password
+  entry=$(_pass_fzf_select "Pass Edit> ")
+  [[ -n "$entry" ]] && pass edit "$entry"
+

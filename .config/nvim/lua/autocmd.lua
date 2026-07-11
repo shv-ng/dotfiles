@@ -16,17 +16,6 @@ vim.api.nvim_create_autocmd("BufWritePost", {
       vim.lsp.buf.format({ bufnr = args.buf, async = false })
     end
 
-    if vim.bo.filetype == "python" then
-      local filepath = vim.fn.shellescape(vim.api.nvim_buf_get_name(0))
-
-      vim.fn.system("ruff format " .. filepath)
-      vim.fn.system("ruff check --fix --unsafe-fixes " .. filepath)
-      vim.cmd("silent! e!")
-
-
-      return
-    end
-
     if vim.bo.filetype == "go" then
       vim.lsp.buf.code_action({
         context = {
